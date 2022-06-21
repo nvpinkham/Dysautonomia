@@ -22,8 +22,11 @@ The scripts for creating each figure are in the associated folders
   
  figure 2: 
   a. 3 - 5 minutes for Random Forest annalysis 
-  b. 10 - 15 minutes for permutation analysis
+  
+  b. 20 - 30 minutes for permutation analysis
+  
   c. < 10 sec
+  
   d. < 10 sec
   
  figure 3: 
