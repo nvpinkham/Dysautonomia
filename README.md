@@ -11,6 +11,7 @@ The scripts for creating each figure are in the associated folders
  - these scripts are supposed to be run in their parent directory (same directory as this document)
 
 
+
 ### Time estimates for R scripts associated with each figure:
 
  figure 1:\
@@ -22,9 +23,13 @@ The scripts for creating each figure are in the associated folders
   
  figure 2:\
   a. 3 - 5 minutes for Random Forest annalysis\
-  b. 10 - 15 minutes for permutation analysis\
+  b. 20 - 30 minutes for permutation analysis\
   c. < 10 sec.\
   d. < 10 sec.
   
  figure 3:\
+  a. < 10 sec.\
+  b. < 10 sec.\
+  c. < 10 sec.\
+  d. < 10 sec.\
  
