@@ -1,6 +1,8 @@
 
 setwd("/Users/nickpinkham/Desktop/Dysautonomia")
 
+source("R/human_functions.22.06.18.R")
+
 meta.serum <- read.csv("data/HumanSerumUnpaired_biomassnorm_metalabels.csv", row.names = 1)
 map.serum <- read.csv("data/Map_human_metabolome_serum.csv", row.names = 1)
 

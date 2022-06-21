@@ -1,4 +1,5 @@
-setwd("/Users/nickpinkham/Desktop/Dysautonomia")
+
+source("R/human_functions.22.06.18.R")
 
 meta.stool <- read.csv("data/HumanStoolUnpaired_biomassnorm_metalabels.csv", row.names = 1)
 map.stool <- read.csv("data/Map_human_metabolome_stool.csv", row.names = 1)
