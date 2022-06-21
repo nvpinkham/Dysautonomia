@@ -14,7 +14,7 @@ The scripts for creating each figure are in the associated folders
 ### Time estimates for R scripts associated with each figure:
 
  figure 1:
-  a. < 10 sec.
+  a. - < 10 sec.
   b. 10 - 15 minutes for permutation analysis * change number "num.perm" to run few permutations to speed up process
   c. 10 - 15 minutes for permutation analysis 
   d. < 10 sec.
@@ -22,11 +22,8 @@ The scripts for creating each figure are in the associated folders
   
  figure 2: 
   a. 3 - 5 minutes for Random Forest annalysis 
-  
-  b. 20 - 30 minutes for permutation analysis
-  
+  b. 10 - 15 minutes for permutation analysis
   c. < 10 sec
-  
   d. < 10 sec
   
  figure 3: 
