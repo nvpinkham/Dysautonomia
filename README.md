@@ -11,7 +11,7 @@ The scripts for creating each figure are in the associated folders
  - these scripts are supposed to be run in their parent directory (same directory as this document)
 
 
-Time estimates for R scripts associated with each figure:
+### Time estimates for R scripts associated with each figure:
 
  figure 1:
   a. < 10 sec.
