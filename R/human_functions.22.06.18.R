@@ -16,7 +16,7 @@ library(lme4)
 options(scipen=999)
 
 
-rs <-list.files("/Users/nickpinkham/Desktop/Nature2022_submission/data/MetaboAnalystR-master/R", pattern = ".R", full.names = T)
+rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
 
 for(i in rs[-1]){
   # Load MetaboAnalystR functions
@@ -90,7 +90,6 @@ group.nmds2 <- function(otu, predictor, groups, col){
 #' @param infile original map and list of patients
 #' @return map with random pairs
 #' @export
-
 paired.map <- function(map, pats){
 
   pat.id <- rel.id <- NULL
@@ -183,6 +182,13 @@ norm <- function(samples.pick, metabolites){
   return(meta.normalized)
 }
 
+#' calcualtes the median of each column
+#'
+#'
+#'
+#' @param infile matrix
+#' @return the median of each column in a vector
+#'
 colMedians <- function(mat){
   res <- apply(mat, 2, median)
   return(res)
