@@ -16,15 +16,15 @@ The scripts for creating each figure are in the associated folders
  figure 1:\
   a. < 10 sec.\
   b. 10 - 15 minutes for permutation analysis * change number "num.perm" to run few permutations to speed up process\
-  c. 10 - 15 minutes for permutation analysis 
-  d. < 10 sec.
-  e. < 10 sec.
+  c. 10 - 15 minutes for permutation analysis\
+  d. < 10 sec.\
+  e. < 10 sec.\
   
- figure 2: 
-  a. 3 - 5 minutes for Random Forest annalysis 
-  b. 10 - 15 minutes for permutation analysis
-  c. < 10 sec
-  d. < 10 sec
+ figure 2:\
+  a. 3 - 5 minutes for Random Forest annalysis\
+  b. 10 - 15 minutes for permutation analysis\
+  c. < 10 sec.\
+  d. < 10 sec.\
   
- figure 3: 
+ figure 3:\
  
