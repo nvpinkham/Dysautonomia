@@ -37,9 +37,9 @@ MetaboAnalyst was not easily compiled on our system so we used individual R scri
   c. < 10 sec.\
   d. < 10 sec.\
   
-   figure 4:\
-  a. 5 minutes for multiple PERMANOVAs 
-  b. 10 minutes for multiple PERMANOVAs 
+ figure 4:\
+  a. 5 minutes for multiple PERMANOVAs \
+  b. 10 minutes for multiple PERMANOVAs \
   c. < 10 sec.\
   d. < 10 sec.
  
