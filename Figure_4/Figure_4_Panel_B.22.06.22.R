@@ -12,7 +12,7 @@ source("R/mice_functions.22.06.22.R")
 rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
 
 for(i in rs[-1]){
-        source(i)
+  source(i)
 }
 
 
@@ -32,31 +32,6 @@ map <- read.csv("data/Map_CoHoused_mice.8.16.csv")
 map$discription <- paste0(map$Genotype, "_", map$Treatment.type)
 map$ID.Gen.Tmt.Age <- paste0("X", map$ID.Gen.Tmt.Age)
 map$DOB <- as.Date(map$DOB , "%m/%d/%y")
-
-map$X16SFile.ID[map$X16SFile.ID == "" ] <- NA
-
-map$col[map$Treatment.type =="Separate" & map$Genotype == "Mutant" ] <- '#D55E00'
-map$col[map$Treatment.type =="Separate" & map$Genotype == "Control"] <- '#F0E442'
-map$col[map$Treatment.type =="Cohoused" & map$Genotype == "Mutant"] <-  '#009E73'
-map$col[map$Treatment.type =="Cohoused" & map$Genotype == "Control"] <- '#CC79A7'
-
-otu <- read.csv("data/FD_OTU_mice21.csv",
-                header = T, row.names = 1)
-
-not.in.map <- otu[!row.names(otu) %in% map$ID.Gen.Tmt.Age,]
-row.names(not.in.map) # these mice are not from the third generation
-rm(not.in.map)
-
-map.otu <- map[!is.na(map$X16SFile.ID) , ]
-map.otu <- map.otu[map.otu$DOB > "2018-12-31" , ] # remove 2nd gen mice!
-#  Mouse IDs 0-300 are third.
-
-otu <- otu[match(map.otu$ID.Gen.Tmt.Age, row.names(otu)) , ]
-map.otu <- map.otu[match(map.otu$ID.Gen.Tmt.Age, row.names(otu)) , ]
-
-all(map.otu$ID.Gen.Tmt.Age ==  row.names(otu))
-
-map.otu$invsimp <- vegan::diversity(otu, "invsimp")
 
 metas <- list.files("data/2020 Mouse Metabolites norm by weight", pattern = "ALL", full.names = T)
 
@@ -86,19 +61,19 @@ all(map.meta$ID.Gen.Tmt.Age == row.names(meta))
 
 ######## make unique col variation for each time point
 for(i in 1:nrow(map.otu)){
-        colfunc <- colorRampPalette(c("white",
-                                      map.otu$col[i],
-                                      "black"))
-        col.pick <- colfunc(375)
-        map.otu$Age.Col[i] <- col.pick[map.otu$Age.Bin[i]]
+  colfunc <- colorRampPalette(c("white",
+                                map.otu$col[i],
+                                "black"))
+  col.pick <- colfunc(375)
+  map.otu$Age.Col[i] <- col.pick[map.otu$Age.Bin[i]]
 }
 
 for(i in 1:nrow(map.meta)){
-        colfunc <- colorRampPalette(c("white",
-                                      map.meta$col[i],
-                                      "black"))
-        col.pick <- colfunc(375)
-        map.meta$Age.Col[i] <- col.pick[map.meta$Age.Bin[i]]
+  colfunc <- colorRampPalette(c("white",
+                                map.meta$col[i],
+                                "black"))
+  col.pick <- colfunc(375)
+  map.meta$Age.Col[i] <- col.pick[map.meta$Age.Bin[i]]
 
 }
 
@@ -110,8 +85,6 @@ map.1 <- get.close(map.otu, 100)
 map.2 <- get.close(map.otu, 200)
 map.3 <- get.close(map.otu, 300)
 
-
-
 map <- rbind(map.1,
              map.2,
              map.3)
@@ -119,36 +92,31 @@ map <- rbind(map.1,
 res <- NULL
 
 for(i in 1 : length(treats)){
-        for(j in 1 : i){
-                if(i != j){
+  for(j in 1 : i){
+    if(i != j){
 
-                        res.i <- pair.otu2(map, otu,
-                                           c(treats[i], treats[j]))
-                        res <- rbind(res, res.i)
-                }
-        }
+      par(mfrow=c(3,1))
+
+      res.i <- pair.meta(map.meta, meta, comps = c(treats[i], treats[j]))
+
+      res <- rbind(res, res.i)
+    }
+  }
 }
+
 
 res <- as.data.frame(res)
 row.names(res) <- NULL
-res <- res[order(res$DPW) , ]
-write.csv(res, "Microbiome_between_groups.csv")
+res <- res[order(res$group.1) , ]
 
-#setEPS()       # Set postscript arguments
-#postscript(paste0("PERNOVA_16S_summary",
-#           width = 6, height = 8)
-
-res <- read.csv("Microbiome_between_groups.csv")
-
-colnames(res)[2:3] <- c("group.1", "group.2")
+write.csv(res, "Metabalome_between_groups.csv")
+res <- read.csv("Metabalome_between_groups.csv")
 
 res1 <- res[res$group.1 == "Control_Cohoused" & res$group.2 == "Mutant_Cohoused",]
-
 res2 <- res[res$group.1 == "Control_Separate" & res$group.2 == "Mutant_Separate",]
 
-
 res <- rbind(res1, res2)
-res <- res[order(res$n.group.2),]
+res <- res[order(res$group.2),]
 
 res$col <- as.numeric(as.factor(paste(res$group.1, res$group.2)))
 
@@ -162,26 +130,31 @@ res$n.scale <-   scale(res$n, center = T, scale = T)
 res$n.scale <-   res$n.scale + diff(c(min(res$n.scale), 1))
 
 res$dis <- as.factor(paste0(  res$group.1, "_",   res$group.2))
+res$day <- res$day + (as.numeric(res$dis) * 10) - 15
 
-res$day <- res$DPW + (as.numeric(res$dis) * 10) - 15
+
+#setEPS()       # Set postscript arguments
+#postscript(paste0("PEMANOA_metabolite_summary",
+#           width = 6, height = 8)
+
 
 par(mfrow=c(2, 2))
 par(mar = c(5.1, 4.1, 4.1, 2.1))
 
-#plot(res$p.val ~ res$day,
+
 plot(res$p.val ~ res$day,
-     xlim = c(80, 380),
-     ylim = c(-.01, .1),
      pch = 21,
      cex = res$n.scale,
      bg = res$col,
-     main = "16S PERMANOVA",
-     xlab = "DPW",
+     main = "Metabolite PERMANOVA",
+     xlab = "Months ppost weaning",
      ylab = "P value",
+     xlim= c(80, 360),
+     ylim = c(-.1, .7),
      xaxt = "n")
 
-axis(1, at = c(100, 200, 300),
-     labels = c("79", "179", "279"))
+axis(1, at = c(111, 201, 291),
+     labels = c("3", "6", "9"))
 
 comps <- paste(res$group.1, res$group.2)
 
@@ -189,18 +162,18 @@ abline(h = 0.05, col = 2, lty = 2)
 
 for(i in 1 : 2){
 
-        res.i <- res[comps == unique(comps)[i] , ]
-        points(  res.i $p.val ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
-        points(  res.i $p.val ~ res.i$day, col = res.i$col[1], type = "l")
+  res.i <- res[comps == unique(comps)[i] , ]
+  points(  res.i $p.val ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
+  points(  res.i $p.val ~ res.i$day, col = res.i$col[1], type = "l")
 }
 
 legend(pch = 21, pt.bg  = 8,
        bty="n", cex = .75,
        pt.cex = c(min(res$n.scale),
-                  median(res$n.scale),
+                  mean(res$n.scale),
                   max(res$n.scale)),
        legend = paste("\n   n =", c(min(res$n),
-                                    median(res$n),
+                                    round(mean(res$n)),
                                     max(res$n)),
                       "\n"),
        "topright")
@@ -216,17 +189,18 @@ legend("left", bty="n",
                   "FD vs. control mice housed seperately"))
 #######################################################
 
+
 par(mar = c(5.1, 4.1, 4.1, 2.1))
 
 plot(res$f.stat ~ res$day,
-     xlim = c(80, 380),
-     ylim = c(1.5, 5.5),
      pch = 21,
      cex = res$n.scale,
      bg = res$col,
-     main = "16S PERMANOVA",
-     xlab = "DPW",
+     main = "Metabolite PERMANOVA",
+     xlab = "Months post weaning",
      ylab = "F stat",
+     xlim = c(80, 360),
+     ylim = c(.55, 2.95),
      xaxt = "n")
 
 
@@ -238,25 +212,39 @@ axis(1, at = c(100, 200, 300),
 
 for(i in 1 : 2){
 
-        res.i <- res[comps == unique(comps)[i] , ]
-        points(  res.i $f.stat ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
-        points(  res.i $f.stat ~ res.i$day, col = res.i$col[1], type = "l")
+  res.i <- res[comps == unique(comps)[i] , ]
+  points(  res.i $f.stat ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
+  points(  res.i $f.stat ~ res.i$day, col = res.i$col[1], type = "l")
 }
 
 legend(pch = 21, pt.bg  = 8,
        bty="n", cex = .75,
        pt.cex = c(min(res$n.scale),
-                  median(res$n.scale),
+                  mean(res$n.scale),
                   max(res$n.scale)),
        legend = paste("\n   n =", c(min(res$n),
-                                    median(res$n),
+                                    round(mean(res$n)),
                                     max(res$n)),
                       "\n"),
        "right")
 
+par(mar = c(0, 0, 0, 0))
+plot.new()
 
-table(map.otu$Treatment.type, map.otu$Genotype, map.otu$Age.Bin)
-table(map.otu$Genotype, map.otu$Age.Bin)
+res <- res[rev(order(res$p.val)), ]
+
+# legend("left", bty="n", fill = unique(res$col),
+# legend = unique(paste("\n", res$group.2, "\nto", res$group.1, "\n")))
+
+table(map.meta$Genotype, map.meta$Age.Bin)
+
+
+
+
+
+
+
+
 
 
 
