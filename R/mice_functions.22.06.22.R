@@ -54,7 +54,7 @@ plot.meta <- function(meta.pick, map.pick, return.points = F){
   }
 }
 
-get.close2 <- function(map, day = 113, bin.size = 50){
+"get.close2 <- function(map, day = 113, bin.size = 50){
 
   map <- map[ !is.na(map$Age.Days) , ]
   mice <- unique(map$Mouse.ID)
@@ -75,7 +75,7 @@ get.close2 <- function(map, day = 113, bin.size = 50){
 
   #map.pick <- map.pick[map.pick$Age.Bin == day , ]
   return(map.pick)
-}
+}"
 
 
 get.close <- function(map, day = 100){
@@ -100,8 +100,11 @@ get.close <- function(map, day = 100){
 }
 
 
-
-
+#' Normalizes mouse metabolite matrix with Metaboanalyst
+#'
+#'
+#' @param infile samples included and metabolite matrix
+#' @return normalized matrix of samples in samples.pick vector
 norm <- function(samples.pick, metabolites){
 
   dir.create("processing")
@@ -1016,6 +1019,148 @@ d2med <- function(otu, map, mediod) {
 
   title(paste("p val =", res$p.value,
               "\ncor =", res$estimate))
+}
+
+pair.meta3 <- function(map.meta, meta, comps){
+
+  l.1 <- NULL
+  l.2 <- NULL
+
+  l.1[[1]] <- list()
+  l.2[[1]] <- list()
+
+  tp <- sort(unique(map.meta$Age.Bin))
+
+  for(i in 1 : length(tp)){
+
+
+    ################ get the samples we are working with ###################
+    samples.pick <- map.meta$ID.Gen.Tmt.Age[map.meta$Age.Bin == tp[i]
+                                            & map.meta$discription
+                                            %in% comps]
+
+    meta.pick <- norm(samples.pick, meta)
+    meta.pick$Label <- NULL
+
+    print("metabolites were normalized")
+
+    map.pick <- map.meta[map.meta$ID.Gen.Tmt.Age %in% samples.pick , ]
+    map.pick <- map.pick[ match(row.names(meta.pick),
+                                map.pick$ID.Gen.Tmt.Age) , ]
+
+
+    ###### PERMANOVA ######
+    par(mar=c(5.1, 4.1, 7.1, 2.1))
+
+    set.seed(42)
+    res1 <- adonis(dist(meta.pick) ~ map.pick$discription, permutations = 9999)
+
+    res1 <- res1$aov.tab
+
+    ord <- pco(dist(meta.pick))
+
+    plot(ord$points,
+         pch = 21,
+         bg = map.pick$col,
+         cex = 2,
+         ylim = c(min(ord$points[,2]) * 1.35, max(ord$points) * 1.1),
+         xlab = paste0("PCO 1\n(",
+                       round(ord$eig[1] / sum(ord$eig) * 100, 2),
+                       "%)"),
+         ylab = paste0("PCO 2 (",
+                       round(ord$eig[2] / sum(ord$eig) * 100, 2),
+                       "%)"))
+    ordispider(ord, map.pick$discription, col = unique(map.pick$col))
+
+
+    legend("bottom",
+           fill = unique(map.pick$col),
+           legend = unique(map.pick$discription))
+
+    res1 <- c( round(res1$`Pr(>F)`[1], 4),
+               round(res1$F[1], 3),
+               nrow(map.pick))
+    names(res1) <- c("p.val", "f.stat", "n")
+
+    title(paste("PERMANOVA\np val =", res1[1],
+                "\nf stat =", res1[2],
+                "\nn=", res1[3]))
+    legend("top", legend = paste("day", tp[i]),  bty="n" )
+
+    ##### RF #####
+
+    rf.res <- pairwiseRF(mat = meta.pick,
+                         map = map.pick,
+                         dis_1 = unique(map.pick$discription)[1],
+                         dis_2 = unique(map.pick$discription)[2],
+                         plot = F)
+
+    if(   rf.res[1] != "VARIABLE p val > 0.05" & res1[1] < 0.05){
+
+      print("RUNNING RANDOM FOREST")
+
+      aa <- match(names(rf.res[[1]]), colnames(meta.pick))
+      bb <- match(names(rf.res[[2]]), colnames(meta.pick))
+
+      meta.dif <- c(aa, bb)
+
+      m1 <- meta.pick[map.pick$discription == comps[1],
+                      meta.dif]
+
+      m2 <- meta.pick[map.pick$discription == comps[2],
+                      meta.dif]
+
+      a <- 0 : (length(m1) -1) * 4
+
+      par(mar=c(4.1, 12.1, 6.1, 4.1))
+
+      boxplot(m1, las = 2, horizontal = TRUE, at = a,
+              xlim = c(-.5, max(a)+2),
+              col = map.pick$col[map.pick$discription == comps[1]])
+      boxplot(m2, las = 2, horizontal = TRUE, yaxt="none",
+              at = a + 1, add= T, names = rep("", length(a)),
+              col = map.pick$col[map.pick$discription == comps[2]])
+
+      abline(h = length(aa) * 4 - 1.5, lty = 1, col = 3, lwd = 2)
+
+      l.1[[i]] <- names(rf.res[[1]])
+      l.2[[i]] <- names(rf.res[[2]])
+
+      meta.pick2 <- meta.pick[,-c(aa, bb)]
+      meta.pick2 <- cbind(map.pick$discription, meta.pick2)
+
+      meta.pick2 <- norm(map.pick$ID.Gen.Tmt.Age, meta.pick2)
+      meta.pick2$Label <- NULL
+
+      res2 <- adonis(dist(meta.pick2) ~ map.pick$discription, permutations = 9999)
+      res2 <- res2$aov.tab
+      res2 <- c( round(res2$`Pr(>F)`[1], 4),
+                 round(res2$F[1], 3),
+                 nrow(map.pick))
+      names(res2) <- c("p.val", "f.stat", "n")
+
+      res3 <- res1 - res2
+
+      if(res2[1] < .1){
+        title(paste("Metabolites identified as significant by RF",
+                    "\nPERMANOVA after metabolites removed\np val =", res2[1],
+                    "f stat reduction =", res3[2]))
+      }else{
+        title(paste("Metabolites identified as significant by RF",
+                    "\nPERMANOVA after metabolites removed\np val =", res2[1]))
+      }
+
+    }else{
+      plot.new()
+      text(.5,.5, "Random Forrest\np val > 0.05")
+    }
+  }
+
+  res <- list(l.1, l.2)
+  names(res) <- c(comps[1], comps[2])
+
+  return(res)
+
 }
 
 

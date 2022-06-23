@@ -121,15 +121,16 @@ paired.map <- function(map, pats){
   map.pick <- rbind(map.pat, map.rel)
 
   return(  map.pick)
-
 }
 
 
 #' Gets the sample closest to a day
 #'
+#' map file where if a subject was resampled only the samples closest to the day
+#'is selected for each subject
 #'
-#' @param infile map and day as integer
-#' @return
+#' @param infile map and day
+#' @return map file
 get.close <- function(map, day){
 
   mice <- unique(map$Mouse.ID)
@@ -284,7 +285,17 @@ plot.pval <- function(mat, cols, name,  type = "stool",  b4 = "after FDR correct
   }
 }
 
-plot.effect <- function(mat, cols, name, type = "stool", print = T){
+#' Plot permutation results
+#'
+#'
+#'
+#' @param infile permutation effect matrix
+#' @return color coded boxplot
+plot.effect <- function(mat,
+                        cols = c("dodgerblue4", "dodgerblue2",
+                                 "white",
+                                 "orangered", "red"),
+                        name, type = "stool", print = T){
 
   par(mar=c(10.1,4.1,4.1,2.1))
   par(cex.axis=0.5)
@@ -340,6 +351,12 @@ plot.effect <- function(mat, cols, name, type = "stool", print = T){
   }
 }
 
+#' Find genera that are shared between two paired samples
+#'
+#' binary if pres/abs shout be used instead of relative abundance
+#'
+#' @param infile map, otu table, taxonomy table,
+#' @return color coded boxplot
 tax.shared <- function(map, otu, tax, binary = F){
 
   tax.familes <- sort(unique(tax$family))
