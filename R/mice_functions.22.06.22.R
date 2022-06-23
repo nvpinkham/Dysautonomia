@@ -54,29 +54,6 @@ plot.meta <- function(meta.pick, map.pick, return.points = F){
   }
 }
 
-"get.close2 <- function(map, day = 113, bin.size = 50){
-
-  map <- map[ !is.na(map$Age.Days) , ]
-  mice <- unique(map$Mouse.ID)
-
-  sample.pick <- NULL
-  for(i in 1: length(mice)){
-
-    map.i <- map[map$Mouse.ID == mice[i] , ]
-    a <- abs(map.i$Age.Days - day)
-
-    sample.pick[i] <- map.i$ID.Gen.Tmt.Age[a == min(a)]
-  }
-
-  sample.pick <- sample.pick[!is.na( sample.pick)]
-
-  map.pick <- map[map$ID.Gen.Tmt.Age %in% sample.pick , ]
-  map.pick <- map.pick[abs(map.pick$Age.Days - day) < bin.size , ]
-
-  #map.pick <- map.pick[map.pick$Age.Bin == day , ]
-  return(map.pick)
-}"
-
 
 get.close <- function(map, day = 100){
 
@@ -99,6 +76,35 @@ get.close <- function(map, day = 100){
   return(map.pick)
 }
 
+#' Gets the sample closest to a day, within a day range - bin size
+#'
+#' map file where if a subject was resampled only the samples closest to the day
+#'is selected for each subject AND must be within the day range/bin size
+#'
+#' @param infile map and day
+#' @return map file
+get.close2 <- function(map, day = 113, bin.size = 50){
+
+  map <- map[ !is.na(map$Age.Days) , ]
+  mice <- unique(map$Mouse.ID)
+
+  sample.pick <- NULL
+  for(i in 1: length(mice)){
+
+    map.i <- map[map$Mouse.ID == mice[i] , ]
+    a <- abs(map.i$Age.Days - day)
+
+    sample.pick[i] <- map.i$ID.Gen.Tmt.Age[a == min(a)]
+  }
+
+  sample.pick <- sample.pick[!is.na( sample.pick)]
+
+  map.pick <- map[map$ID.Gen.Tmt.Age %in% sample.pick , ]
+  map.pick <- map.pick[abs(map.pick$Age.Days - day) < bin.size , ]
+
+  #map.pick <- map.pick[map.pick$Age.Bin == day , ]
+  return(map.pick)
+}
 
 #' Normalizes mouse metabolite matrix with Metaboanalyst
 #'
