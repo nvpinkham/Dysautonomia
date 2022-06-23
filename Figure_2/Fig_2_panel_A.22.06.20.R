@@ -1,4 +1,4 @@
-getwd()
+
 source("R/human_functions.22.06.18.R")
 
 map <- read.csv("data/Map_human_microbiome.csv")
@@ -20,7 +20,7 @@ par(mar=c(4.1, 4.1, 5.1, 1))
 
 rf.res <- pairwiseRF(otu, map, dis_1 = "FD", dis_2 = "Normal", Factor = 2.5, plot = T)
 
-
+# Rrlate OTU # to Genus membership
 comps <- c("FD", "Normal")
 
 aa <- match(names(rf.res[[1]]), colnames(otu))
@@ -53,14 +53,6 @@ a <- 0 : (length(m1) -1) * 4
 
 par(mar=c(5.1, 13.1, 5.1, 1))
 
-setEPS()       # Set postscript arguments
-postscript(paste0("Figure2_PanelA",
-                  #  Sys.Date(),
-                  ".eps"),
-           width = 6, height = 6)
-
-par(mar=c(4.1, 14.1, 5.1, 1))
-
 boxplot(m1, las = 2, horizontal = TRUE,
         at = a,
         xlim = c(-2, max(a) + 6),
@@ -84,7 +76,8 @@ abline(h = length(bb) * 4 - 2, col = 2)
 legend("top", fill= c(3, "dodgerblue"),
        legend = c("Enterotype 1", "Enterotpe 2"))
 
-dev.off()
+
+
 
 
 

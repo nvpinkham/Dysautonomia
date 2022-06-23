@@ -73,10 +73,7 @@ tmao$sample.id
 
 
 
-setEPS()       # Set postscript arguments
-postscript(paste0("figure_2_panel_C_",
-                  Sys.Date(), ".eps"),
-           width = 4, height = 3)
+
 
 t.res <- t.test(tma2$tma.ln ~ tma2$Disease.state, paired= T)
 
@@ -86,12 +83,7 @@ title(paste0("t-test\np-value =", round(t.res$p.value, 5),
              ", effect size= ", round(t.res$estimate, 5)),
       font = 4)
 
-dev.off()
 
-setEPS()       # Set postscript arguments
-postscript(paste0("figure_2_panel_D_",
-                  Sys.Date(), ".eps"),
-           width = 4, height = 3)
 
 t.res <- t.test(tmao$tmao.ln ~ tmao$Disease.state, paired= T)
 
@@ -101,4 +93,3 @@ title(paste0("t-test\np-value =", round(t.res$p.value, 5),
              ", effect size= ", round(t.res$estimate, 5)),
       font = 4)
 
-dev.off()

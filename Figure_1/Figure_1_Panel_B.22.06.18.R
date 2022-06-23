@@ -1,5 +1,4 @@
-getwd()
-setwd("/Users/nickpinkham/Desktop/Dysautonomia/")
+
 source("R/human_functions.22.06.18.R")
 
 # makes figure 1 panel b

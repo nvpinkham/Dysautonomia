@@ -4,6 +4,9 @@
 
 source("R/human_functions.22.06.18.R")
 
+num.perm = 9
+
+
 map <- read.csv("data/Map_human_microbiome.csv")
 row.names(map) <- map$sample.id
 map$Collection.date <- as.Date(map$Collection.date)
@@ -45,7 +48,7 @@ reconcile(map, otu)
 
 map$prop.shared <- NA
 
-prop.shared <- matrix(nrow = nrow(map), ncol = 999)
+prop.shared <- matrix(nrow = nrow(map), ncol = num.perm)
 row.names(prop.shared) <- map$sample.id
 prop.unique <- prop.shared
 
@@ -53,13 +56,13 @@ prop.unique <- prop.shared
 t.res.shared.stat <- t.res.shared.p <- t.res.shared.df <- t.res.shared.ef <- NULL
 
 p.shared <- list() # only in one group
-p.shared <- p.shared[1:999]
+p.shared <- p.shared[1:num.perm]
 r.shared <- p.shared
 pats <- unique(map$DonorID[map$Disease.state == "Patient"])
 
 
 #proportion of population
-for(i in  1 : 999){
+for(i in  1 : num.perm){
 
   print(i)
 
