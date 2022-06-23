@@ -74,25 +74,6 @@ map$dummy <- as.numeric( map$test) + rnorm(length(map$test), mean = 0, sd = .03)
 
 table(map$Mouse.ID, is.na(map$Phenotype.score))
 
-'''
-for(i in 1 : length(mice)){
-
-  map.i <- map[map$Mouse.ID == mice[i] , ]
-
-
-
-  if(length(map.i$DOB) >= 2){
-
-    for(j in 2 : nrow(map.i)){
-
-      segments(x0 = map.i$dummy[j - 1], y0 = map.i$Phenotype.score[j - 1],
-               x1 = map.i$dummy[j], y1 = map.i$Phenotype.score[j],
-               col = 8)
-
-    }
-  }
-}
-'''
 points(map$Phenotype.score + rnorm(length(map$test), mean = 0, sd = .03) ~ map$dummy, col = map$col, pch = 21, bg = 8)
 
 
@@ -113,9 +94,6 @@ segments(2.7, agg$x[3], 3.3, agg$x[3], lwd = 2)
 segments(3.7, agg$x[4], 4.3, agg$x[4], lwd = 2)
 segments(4.7, agg$x[5], 5.3, agg$x[5], lwd = 2)
 segments(5.7, agg$x[6], 6.3, agg$x[6], lwd = 2)
-
-
-#dev.off()
 
 table(map$Age.Bin[!is.na(map$Phenotype.score)],
       map$discription[!is.na(map$Phenotype.score)])
