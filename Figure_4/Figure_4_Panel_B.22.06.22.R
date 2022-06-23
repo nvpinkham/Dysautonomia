@@ -33,6 +33,11 @@ map$discription <- paste0(map$Genotype, "_", map$Treatment.type)
 map$ID.Gen.Tmt.Age <- paste0("X", map$ID.Gen.Tmt.Age)
 map$DOB <- as.Date(map$DOB , "%m/%d/%y")
 
+map$col[map$Treatment.type =="Separate" & map$Genotype == "Mutant" ] <- '#D55E00'
+map$col[map$Treatment.type =="Separate" & map$Genotype == "Control"] <- '#F0E442'
+map$col[map$Treatment.type =="Cohoused" & map$Genotype == "Mutant"] <-  '#009E73'
+map$col[map$Treatment.type =="Cohoused" & map$Genotype == "Control"] <- '#CC79A7'
+
 metas <- list.files("data/2020 Mouse Metabolites norm by weight", pattern = "ALL", full.names = T)
 
 a <- read.csv(metas[1], header = T, row.names = 1)
@@ -60,13 +65,6 @@ all(map.meta$ID.Gen.Tmt.Age == row.names(meta))
 
 
 ######## make unique col variation for each time point
-for(i in 1:nrow(map.otu)){
-  colfunc <- colorRampPalette(c("white",
-                                map.otu$col[i],
-                                "black"))
-  col.pick <- colfunc(375)
-  map.otu$Age.Col[i] <- col.pick[map.otu$Age.Bin[i]]
-}
 
 for(i in 1:nrow(map.meta)){
   colfunc <- colorRampPalette(c("white",
@@ -81,13 +79,15 @@ treats <-  c( "Mutant_Cohoused" , "Mutant_Separate",
               "Control_Cohoused", "Control_Separate")
 
 
-map.1 <- get.close(map.otu, 100)
-map.2 <- get.close(map.otu, 200)
-map.3 <- get.close(map.otu, 300)
 
-map <- rbind(map.1,
-             map.2,
-             map.3)
+map.1 <- get.close(map.meta, 100)
+map.2 <- get.close(map.meta, 200)
+map.3 <- get.close(map.meta, 300)
+
+map.meta <- rbind(map.1,
+                  map.2,
+                  map.3)
+
 
 res <- NULL
 
