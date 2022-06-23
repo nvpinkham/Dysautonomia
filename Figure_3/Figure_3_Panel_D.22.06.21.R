@@ -1,6 +1,4 @@
 
-setwd("/Users/nickpinkham/Desktop/Dysautonomia")
-
 library(vegan)
 library(labdsv)
 library(vioplot) # 0.3.7
@@ -10,9 +8,11 @@ library(RColorBrewer)
 library(dendextend)
 library(dplyr)
 
-rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
+source("R/mice_functions.22.06.22.R")
+source("R/")
 
-source("R/mice_functions.22.06.21.R")
+
+rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
 
 for(i in rs[-1]){
  source(i)
