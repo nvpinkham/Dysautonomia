@@ -1,9 +1,10 @@
 
 source("R/human_functions.22.06.18.R")
 
-
+# make Ordination of beta diversity in human participants
 # should take under a minute
 
+# import data
 map <- read.csv("data/Map_human_microbiome.csv")
 row.names(map) <- map$sample.id
 otu <- read.csv("data/FD_OTU_human21.csv", row.names = 1)
@@ -11,15 +12,16 @@ otu <- read.csv("data/FD_OTU_human21.csv", row.names = 1)
 table(map$Disease.state)
 length(unique(map$Family.ID))
 
-reconcile(map, otu)
+reconcile(map, otu) # make sure samples match
 
 set.seed(42)
-otu.nmds <- metaMDS(otu, distance = "bray")
+otu.nmds <- metaMDS(otu, distance = "bray") # make ordination
 
-otu.bc <- vegdist(otu)
-beta.d <- betadisper(otu.bc, group = map$Disease.state)
+otu.bc <- vegdist(otu) # calc dissimilarity
+
 set.seed(42)
-res <- adonis2(otu.bc ~ map$Disease.state)
+res <- adonis2(otu.bc ~ map$Disease.state)# Run permanova compairing patients to relatives
+# pairing not incorperated, some subjects resampled
 res <- paste("BC dist ~ disease state \n f stat",
              round(res$F[1], 3), "p val", res$`Pr(>F)`[1])
 
@@ -28,7 +30,7 @@ plot(otu.nmds$points, cex = .2, main = res)
 num.pairs <- NULL
 
 for(i in unique(map$Family.ID)){
-
+  # draw lines connecting all samples to their possible paired samples (samples from opposite category in the same family)
 
   nmds.pick <- otu.nmds$points[map$Family.ID == i,]
   map.pick <- map[map$Family.ID == i,]

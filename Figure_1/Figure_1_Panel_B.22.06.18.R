@@ -6,14 +6,14 @@ source("R/human_functions.22.06.18.R")
 # Runs permutational T test
 # this should take around 10 minutes
 
-num.perm = 999
+num.perm = 9
 
 
-map <- read.csv("Map_human_microbiome.csv")
+map <- read.csv("data/Map_human_microbiome.csv")
 row.names(map) <- map$sample.id
 map$Collection.date <- as.Date(map$Collection.date)
 
-otu <- read.csv("FD_OTU_human21.csv", row.names = 1)
+otu <- read.csv("data/FD_OTU_human21.csv", row.names = 1)
 
 reconcile(map, otu)
 
