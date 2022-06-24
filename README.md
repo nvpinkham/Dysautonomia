@@ -16,6 +16,8 @@ R version 4.1.0
 
 MetaboAnalyst was not easily compiled on our system so we used individual R scripts from the package. Available here https://github.com/xia-lab/MetaboAnalystR 
 
+if you are having trouble with the MetaboAnalyst scripts we have noticed that the R package cairo is often the cause. It is not needed for any of the functions from MetaboAnalyst we utilized so the lines in MetaboAnalyst's "generl_data_utils" that call cairo can be deleted to get around this problem. 
+
 ### Time estimates for R scripts associated with each figure:
 
  figure 1:\
