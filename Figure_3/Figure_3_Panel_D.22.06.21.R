@@ -9,8 +9,6 @@ library(dendextend)
 library(dplyr)
 
 source("R/mice_functions.22.06.22.R")
-source("R/")
-
 
 rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
 
