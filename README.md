@@ -14,7 +14,7 @@ The scripts for creating each figure are in the associated folders
 This analysis was done with macOS version 12.4
 R version 4.1.0
 
-MetaboAnalyst was not easily compiled on our system so we used individual R scripts from the package. 
+MetaboAnalyst was not easily compiled on our system so we used individual R scripts from the package. Available here https://github.com/xia-lab/MetaboAnalystR 
 
 ### Time estimates for R scripts associated with each figure:
 
