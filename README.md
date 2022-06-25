@@ -1,20 +1,22 @@
 # Dysautonomia
-R code used in "Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia"
+The content of this GitHub entry was used in the manuscript, "Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia"
 
-Each sample's meta data is found in the "data" folder alongside metabolite and OTU tables
-Raw sequencing data is avilible at under bioproject PRJNA785599 https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA785599
+1) The "R" folder contains the custom scripts for analyzing human and mouse experiments
 
-R folder contains the custom R
-Man folder contains function documentation 
+2) The "man" folder contains function documentation 
 
-The scripts for creating each figure are in the associated folders
+3) The "data" folder contains metadata along with normalized metabolite abundances and 16S rRNA sequencing OTU tables
+
+4) Folders labeled "Figure_" contain R scripts for generating each figure shown in the main manuscript. Run script in the parent directory.
  - these scripts are supposed to be run in their parent directory (same directory as this document)
+
+Raw sequencing data is available under bioproject PRJNA785599 https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA785599 
+Raw metabolomic data is available MetaboLights accession TBD
 
 ### System requirements
 This analysis was done with macOS version 12.4
 R version 4.1.0
-
-MetaboAnalyst was not easily compiled on our system so we used individual R scripts from the package. Available here https://github.com/xia-lab/MetaboAnalystR 
+MetaboAnalyst is not easily compiled on current macOS so individual R scripts from this package were used for certain processes. These are available at https://github.com/xia-lab/MetaboAnalystR 
 
 if you are having trouble with the MetaboAnalyst scripts we have noticed that the R package cairo is often the cause. It is not needed for any of the functions from MetaboAnalyst we utilized so the lines in MetaboAnalyst's "generl_data_utils" that call cairo can be deleted to get around this problem. 
 
