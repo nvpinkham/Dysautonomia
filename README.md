@@ -62,7 +62,7 @@ if you are having trouble with the MetaboAnalyst scripts we have noticed that th
   d. < 10 sec.
  
 ### mothur pipeline 
-The R scripts used to make the human and mice OTU tables are included in the mothur folder
+The R scripts used to make the human and mice OTU tables are included in the "Run_mothur" folder
 
 
 
