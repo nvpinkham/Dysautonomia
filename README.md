@@ -11,7 +11,7 @@ The content of this GitHub entry was used in the manuscript, "Gut microbiome dys
  - these scripts are supposed to be run in their parent directory (same directory as this document)
 
 Raw sequencing data is available under bioproject PRJNA785599 https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA785599 
-Raw metabolomic data is available MetaboLights accession TBD for now the raw NMR data is available on google drive: https://drive.google.com/drive/folders/1S3Rb55WcZNV4_Nz9h0SWcRjcRo_2FcBn?usp=sharing 
+Raw metabolomic data is available MetaboLights accession TBD for now the raw NMR data is available on OneDrive: https://montanaedu-my.sharepoint.com/:f:/g/personal/g65g434_msu_montana_edu/EhbLYYY7f-RCm3NC-AjuF0MBWJ11RAVhVYKv7WQQpayLjA?e=ZFHTUe it is password protected 
 
 ### System requirements
 This analysis was done with macOS version 12.4
