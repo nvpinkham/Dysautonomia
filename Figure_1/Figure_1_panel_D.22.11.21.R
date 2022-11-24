@@ -2,7 +2,7 @@
 # makes figure 1 panel C
 # this should take around 15 minutes
 
-source("R/human_functions.22.09.14.R")
+source("R/human_functions.22.11.21.R")
 
 map <- read.csv("data/Map_human_microbiome.22.11.21.csv")
 row.names(map) <- map$sample.id
