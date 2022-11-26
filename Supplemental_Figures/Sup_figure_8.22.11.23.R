@@ -27,7 +27,6 @@ Control Separate: #F0E442  (should be yellow color)
 # Mouse IDs 1600s and 1700s are first gen.
 # Mouse IDs in the 4500s are second.
 # Mouse IDs 0-300 are third.
-setwd("/Users/nickpinkham/Desktop/Dysautonomia/")
 
 map <- read.csv("data/Map_CoHoused_mice.8.16.csv")
 map$discription <- paste0(map$Genotype, "_", map$Treatment.type)
