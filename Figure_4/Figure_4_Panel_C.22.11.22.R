@@ -1,5 +1,4 @@
 
-setwd("/Users/nickpinkham/Desktop/Dysautonomia/")
 source("R/mice_functions.22.06.22.R")
 
 map <- read.csv("data/Map_CoHoused_mice.8.16.csv")
