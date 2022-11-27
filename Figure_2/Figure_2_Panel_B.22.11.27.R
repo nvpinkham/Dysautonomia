@@ -241,7 +241,7 @@ for(j in  1 : num.perm){
     serum.t.perm.conf_int_lo[j,i] <- res$conf.int[1]
     serum.t.perm.conf_int_hi[j,i] <- res$conf.int[2]
 
-    serum.diff[j,i] <- mean( (p - r) / r ) * 100
+    # serum.diff[j,i] <- mean( (p - r) / r ) * 100
   }
 }
 
