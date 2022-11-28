@@ -230,6 +230,17 @@ norm.human <- function(samples.pick, metabolites){
   file.remove("data_processed.csv")
   sapply(list.files(pattern = ".qs"), file.remove)
 
+  meta.normalized <- as.data.frame(t(meta.normalized ))
+
+  Label <- meta.normalized$Label
+  ids <- row.names(meta.normalized)
+
+  meta.normalized$Label <- NULL
+
+  meta.normalized <- as.data.frame(apply(meta.normalized, 2, as.numeric))
+  row.names(meta.normalized) <- ids
+  meta.normalized <- cbind(Label, meta.normalized)
+
   return(meta.normalized)
 }
 
