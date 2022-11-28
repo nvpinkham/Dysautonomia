@@ -5,7 +5,7 @@ source("R/human_functions.22.11.27.R")
 # Runs permutational T test
 # this should take around 10 minutes
 
-num.perm = 999
+num.perm = 9
 
 
 meta.stool <- read.csv("/Users/nickpinkham/Desktop/Nature2022_submission/data/human/HumanStoolUnpaired_biomassnorm_metalabels.csv", row.names = 1)
