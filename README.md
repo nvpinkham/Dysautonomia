@@ -9,7 +9,7 @@ The content of this GitHub entry was used in the manuscript, "Gut microbiome dys
 
 4) Folders labeled "Figure_" contain R scripts for generating each figure shown in the main manuscript. Run script in the parent directory.
  - these scripts are supposed to be run in their parent directory (same directory as this document)
-
+ 
 Raw sequencing data is available under bioproject PRJNA785599 https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA785599 
 Raw metabolomic data is available MetaboLights accession TBD for now the raw NMR data is available on OneDrive:  it is password protected 
 
@@ -17,6 +17,12 @@ Raw metabolomic data is available MetaboLights accession TBD for now the raw NMR
 This analysis was done with macOS version 12.4
 R version 4.1.0
 MetaboAnalyst is not easily compiled on current macOS so individual R scripts from this package were used for certain processes. These are available at https://github.com/xia-lab/MetaboAnalystR 
+
+We have noticed that MetaboAnalystR can be tricky to compile so were have come up with a work around:  
+
+1. Open the "generl_data_utils" script that can be found in MetaboAnalystR's "R" folder the "MetaboAnalystR-master/r/generl_data_utils.R"
+2. Delete the "ruleSet" class difinition, lines 69 through 114 (this is the second half of the script). Validated on Noverber 27th, 20223
+3. Add the "MetaboAnalystR-master" folder to your "Dysautonomia-main" directory. 
 
 if you are having trouble with the MetaboAnalyst scripts we have noticed that the R package cairo is often the cause. It is not needed for any of the functions from MetaboAnalyst we utilized so the lines in MetaboAnalyst's "generl_data_utils" that call cairo can be deleted to get around this problem. 
 
