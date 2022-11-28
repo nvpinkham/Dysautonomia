@@ -25,9 +25,9 @@ res <- adonis2(otu.bc ~ map$Disease.state)# Run permanova compairing patients to
 
 res1 <- paste("BC dist ~ disease state \n f stat=",
               round(res$F[1], 3),
-              "p val=", res$`Pr(>F)`[1],
+              ", p val=", res$`Pr(>F)`[1],
               "\ndf =", res$Df[1],
-              "R2 = ",  round(res$R2[1], 5))
+              ", R2 = ",  round(res$R2[1], 5))
 
 plot(otu.nmds$points, cex = .2, main = res1)
 

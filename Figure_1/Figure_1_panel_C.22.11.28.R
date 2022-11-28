@@ -167,7 +167,7 @@ title(ylab ="Richness")
 title(paste("Paired T test mean p value =",  round(mean(rich.t$P_val, na.rm = T), 5),
             "\nmean effect size =", round(mean(rich.t$effect_size, na.rm = T), 5),
             "\ndf =", round(mean(rich.t$df, na.rm = T), 5),
-            "\nmean 95% CI =", round(mean(rich.t$conf_int_lo, na.rm = T), 2),
+            "\nmean 95% CI =", round(mean(rich.t$conf_int_lo, na.rm = T), 2), "to",
             round(mean(rich.t$conf_int_hi, na.rm = T), 2)))
 
 ##################################################################
