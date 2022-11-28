@@ -1,10 +1,10 @@
-source("R/human_functions.22.11.21.R")
+source("R/human_functions.22.11.27.R")
 
 # makes figure 1 panel c
 # Runs permutational T test
 # this should take around 10 minutes
 
-num.perm = 9
+num.perm = 999
 
 map <- read.csv("data/Map_human_microbiome.22.11.21.csv")
 row.names(map) <- map$sample.id
@@ -165,10 +165,10 @@ paired.violin.beta(map, var = map$richness)
 title(ylab ="Richness")
 
 title(paste("Paired T test mean p value =",  round(mean(rich.t$P_val, na.rm = T), 5),
-            #      paste(unique(rich.t$df), collapse = " "),
-            "\nmean of the differences", round(mean(rich.t$effect_size, na.rm = T), 5)))
-
-apply(rich.t, 2, mean)
+            "\nmean effect size =", round(mean(rich.t$effect_size, na.rm = T), 5),
+            "\ndf =", round(mean(rich.t$df, na.rm = T), 5),
+            "\nmean 95% CI =", round(mean(rich.t$conf_int_lo, na.rm = T), 2),
+            round(mean(rich.t$conf_int_hi, na.rm = T), 2)))
 
 ##################################################################
 
@@ -180,5 +180,6 @@ source_data.1c[1,1] <- "Figure 1c"
 
 write.csv(source_data.1c, "source_data_1c.csv")
 
+apply(rich.t, 2, mean)
 
 
