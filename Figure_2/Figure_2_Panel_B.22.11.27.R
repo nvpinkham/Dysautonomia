@@ -1,6 +1,5 @@
 
-getwd()
-source("R/human_functions.22.11.21.R")
+source("R/human_functions.22.11.27.R")
 
 par(mfrow=c(1,4))
 
@@ -25,12 +24,6 @@ map.stool <- map.stool[match(row.names(meta.stool), map.stool$sample.id) , ]
 map.serum <- map.serum[match(row.names(meta.serum), map.serum$sample.id) , ]
 
 map.stool <- map.stool[!is.na(map.stool$Collection.date) , ]
-
-rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
-
-for(i in rs[-1]){
-  source(i)
-}
 
 filter <- NULL
 
@@ -73,7 +66,6 @@ stool.t.perm.effect_size <- stool.t.perm
 stool.t.perm.t.stat <- stool.t.perm
 stool.t.perm.conf_int_lo <- stool.t.perm
 stool.t.perm.conf_int_hi <- stool.t.perm
-
 
 map.stool$Collection.date <- as.Date(map.stool$Collection.date, "%m/%d/%y")
 
@@ -132,25 +124,29 @@ for(i in 1 : nrow(stool.t.perm)){
 
 sort(colMeans(stool.t.fdr))[1:5]
 
-qqnorm(meta.stool$Choline)
-qqnorm(log(meta.stool$Choline))
+ranking <- order(colMeans(stool.t.fdr))
+stool.t.fdr <- stool.t.fdr[ , ranking]
+stool.t.perm.effect_size <- stool.t.perm.effect_size[ , ranking ]
+stool.t.perm.conf_int_hi <- stool.t.perm.conf_int_hi[ , ranking ]
+stool.t.perm.conf_int_lo <- stool.t.perm.conf_int_lo[ , ranking ]
 
-shapiro.test(meta.stool$Choline)
-shapiro.test(log(meta.stool$Choline))
-
-
-stool.t.fdr <- stool.t.fdr[ , order(colMeans(stool.t.fdr))]
 
 par(mfrow=c(1,4))
 
 
-par(mar=c(4.1, 4.1, 5.1, 2.1))
+par(mar=c(4.1, 4.1, 9.1, 2.1))
 
 paired.violin.beta(map = map.stool, var = log(meta.stool$Choline))
 #paired.violin.beta(map = map.stool, var = stool.nrom$Choline)
-title(paste("Stool Choline", "\nmean t test after FDR\n p value =",
-            round(mean(stool.t.fdr[,1]), 5)))
+title(paste("Stool Choline",
+            "\n t test after FDR\n mean p value =",
+            round(mean(stool.t.fdr[,1]), 5),
+            "\nmean effect size =", round(mean(stool.t.perm.effect_size[,1]), 5),
+            "\nmean 95% CI =", round(mean(stool.t.perm.conf_int_lo[,1]), 3),
+            round(mean(stool.t.perm.conf_int_hi[,1]), 3)))
+
 title(ylab = "natural log")
+
 
 ########### SERUM
 
@@ -264,27 +260,40 @@ for(i in 1 : nrow(serum.t.perm)){
 
 sort(colMeans(serum.t.fdr))[1:5]
 
-serum.diff <- serum.diff[ , order(colMeans(serum.t.fdr))]
-serum.t.fdr <- serum.t.fdr[ , order(colMeans(serum.t.fdr))]
 
-table(map.serum$Disease.state)
+ranking <- order(colMeans(serum.t.fdr))
+serum.t.fdr <- serum.t.fdr[ , ranking]
+serum.t.perm.effect_size <- serum.t.perm.effect_size[ , ranking ]
+serum.t.perm.conf_int_hi <- serum.t.perm.conf_int_hi[ , ranking ]
+serum.t.perm.conf_int_lo <- serum.t.perm.conf_int_lo[ , ranking ]
+
 
 paired.violin.beta(map = map.serum, var = log(meta.serum$Xanthine))
 
-title(paste("Serum Xanthine", "\nmean t test after FDR\n p value =", round(mean(serum.t.fdr[,2]), 5),
-            "\nmean% change =", abs(round(mean(serum.diff[,2]), 2))))
-
+title(paste("Serum Xanthine",
+            "\n t test after FDR\n mean p value =",
+            round(mean(serum.t.fdr[,1]), 5),
+            "\nmean effect size =", round(mean(serum.t.perm.effect_size[,1]), 5),
+            "\nmean 95% CI =", round(mean(serum.t.perm.conf_int_lo[,1]), 3),
+            round(mean(serum.t.perm.conf_int_hi[,1]), 3)))
 
 paired.violin.beta(map = map.serum, var = log(meta.serum$Urea))
 
-title(paste("Serum Urea", "\nmean t test after FDR\n p value =", round(mean(serum.t.fdr[,3]), 5),
-            "\nmean% change =", abs(round(mean(serum.diff[,3]), 2))))
-
+title(paste("Serum Urea",
+            "\n t test after FDR\n mean p value =",
+            round(mean(serum.t.fdr[,2]), 5),
+            "\nmean effect size =", round(mean(serum.t.perm.effect_size[,2]), 5),
+            "\nmean 95% CI =", round(mean(serum.t.perm.conf_int_lo[,2]), 3),
+            round(mean(serum.t.perm.conf_int_hi[,2]), 3)))
 
 paired.violin.beta(map = map.serum, var = log(meta.serum$Methanol))
 
-title(paste("Serum Methanol", "\nmean t test after FDR\n p value =", round(mean(serum.t.fdr[,4]), 5),
-            "\nmean% change =", abs(round(mean(serum.diff[,4]), 2))))
+title(paste("Serum Methanol",
+            "\n t test after FDR\n mean p value =",
+            round(mean(serum.t.fdr[,3]), 5),
+            "\nmean effect size =", round(mean(serum.t.perm.effect_size[,3]), 5),
+            "\nmean 95% CI =", round(mean(serum.t.perm.conf_int_lo[,3]), 3),
+            round(mean(serum.t.perm.conf_int_hi[,3]), 3)))
 
 ########################################
 
