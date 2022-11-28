@@ -29,8 +29,15 @@ t.res <- t.test(tma2$tma.ln ~ tma2$Disease.state, paired= T)
 
 paired.violin.beta(map = tma2, var = tma2$tma.ln, plot.each = F)
 mtext(side = 2,at =  2, line = 2, "Natural log uM", font = 4)
-title(paste0("t-test\np-value =", round(t.res$p.value, 5),
-             ", effect size= ", round(t.res$estimate, 5)),
+
+title.t <- paste("TMA t-test\neffect size =",
+                 round(diff(t.res$estimate), 5),
+                 "p val = ", round(t.res$p.value, 5),
+                 "\n95% CI =", round(t.res$conf.int[1], 5),
+                 ",", round(t.res$conf.int[2], 5),
+                 "\ndf = ", round(t.res$parameter, 5))
+
+title(title.t,
       font = 4)
 
 #dev.off()
@@ -48,4 +55,4 @@ source_data_2c <- cbind("", "", source_data_2c)
 source_data_2c[1,2] <- "Figure 2c"
 
 write.csv(source_data_2c,"source_data_2c.csv", row.names = F)
-
+t.res

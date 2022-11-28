@@ -1,5 +1,5 @@
 
-source("R/human_functions.22.11.21.R")
+source("R/human_functions.22.11.27.R")
 
 map.serum <- read.csv("data/Map_human_metabolome_serum.csv", row.names = 1)
 map.serum$Collection.date <- as.Date(map.serum$Collection.date, format = "%Y-%m-%d")
@@ -47,3 +47,4 @@ source_data_2d <- cbind("", "", source_data_2d)
 source_data_2d[1,2] <- "Figure 2d"
 
 write.csv(source_data_2d,"source_data_2d.csv", row.names = F)
+t.res
