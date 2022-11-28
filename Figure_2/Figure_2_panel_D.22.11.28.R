@@ -1,8 +1,8 @@
 
 source("R/human_functions.22.11.27.R")
 
-map.serum <- read.csv("data/Map_human_metabolome_serum.csv", row.names = 1)
-map.serum$Collection.date <- as.Date(map.serum$Collection.date, format = "%Y-%m-%d")
+map.serum <- read.csv("data/Map_human_metabolome_serum.22.11.21.csv", row.names = 1)
+map.serum$Collection.date <- as.Date(map.serum$Collection.date, format = "%m/%d/%y")
 
 tmao <- map.serum[ !is.na(map.serum$tmao) , ]
 table(tmao$Family.ID)
@@ -48,3 +48,8 @@ source_data_2d[1,2] <- "Figure 2d"
 
 write.csv(source_data_2d,"source_data_2d.csv", row.names = F)
 t.res
+
+t.res <- capture.output(t.res)
+writeLines(t.res, "Fig_2c_tests.txt")
+
+

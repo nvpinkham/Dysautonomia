@@ -1,8 +1,9 @@
 
 source("R/human_functions.22.11.27.R")
 
-map.stool <- read.csv("data/Map_human_metabolome_stool.csv", row.names = 1)
-map.stool$Collection.date <- as.Date(map.stool$Collection.date )
+map.stool <- read.csv("data/Map_human_metabolome_stool.22.11.21.csv", row.names = 1)
+map.stool$Collection.date <- as.Date(map.stool$Collection.date, format = "%m/%d/%y")# excel messes up dates by careful
+map.stool$sample.id <- row.names(map.stool)
 
 tma <- map.stool[ !is.na(map.stool$tma) , ]
 table(tma$Family.ID)
@@ -56,3 +57,7 @@ source_data_2c[1,2] <- "Figure 2c"
 
 write.csv(source_data_2c,"source_data_2c.csv", row.names = F)
 t.res
+
+t.res <- capture.output(t.res)
+writeLines(t.res, "Fig_2c_tests.txt")
+

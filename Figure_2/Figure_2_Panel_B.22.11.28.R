@@ -11,8 +11,10 @@ meta.serum <- read.csv("data/HumanSerumUnpaired_biomassnorm_metalabels.csv", row
 map.stool <- read.csv("data/Map_human_metabolome_stool.22.11.21.csv", row.names = 1)
 map.serum <- read.csv("data/Map_human_metabolome_serum.22.11.21.csv", row.names = 1)
 
-map.stool$Collection.date <- as.Date(map.stool$Collection.date, format = "%Y-%m-%d")# excel messes up dates by careful
-map.serum$Collection.date <- as.Date(map.serum$Collection.date, format = "%Y-%m-%d")
+map.stool$Collection.date <- as.Date(map.stool$Collection.date, format = "%m/%d/%y")# excel messes up dates by careful
+map.serum$Collection.date <- as.Date(map.serum$Collection.date, format = "%m/%d/%y")
+
+map.stool$sample.id <- row.names(map.stool)
 
 map.serum$col <- "#56B4E9" # assign colors be genotype
 map.stool$col <- "#56B4E9" # assign colors be genotype
