@@ -1,6 +1,6 @@
 
 
-source("R/human_functions.22.11.21.R")
+source("R/human_functions.22.11.27.R")
 
 # import data
 map <- read.csv("data/Map_human_microbiome.22.11.21.csv")
