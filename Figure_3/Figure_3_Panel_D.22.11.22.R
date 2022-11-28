@@ -1,20 +1,6 @@
 
-library(vegan)
-library(labdsv)
-library(vioplot) # 0.3.7
-library(cluster) # 2.1.3
-library(gplots)
-library(RColorBrewer)
-library(dendextend)
-library(dplyr)
 
-rs <-list.files("MetaboAnalystR-master/R", pattern = ".R", full.names = T)
-
-source("R/mice_functions.22.09.20.R")
-
-for(i in rs[-1]){
- source(i)
-}
+source("R/mice_functions.22.11.27.R")
 
 
 dir.create("processing")
