@@ -3,7 +3,7 @@ source("R/human_functions.22.11.27.R")
 
 par(mfrow=c(1,4))
 
-num.perm = 999
+num.perm = 9#99
 
 meta.stool <- read.csv("data/HumanStoolUnpaired_biomassnorm_metalabels.csv", row.names = 1)
 meta.serum <- read.csv("data/HumanSerumUnpaired_biomassnorm_metalabels.csv", row.names = 1)
@@ -316,7 +316,7 @@ source_data_2b[1,8] <- "natural log stool metablite concentration"
 colnames(source_data_2b)[8] <- "Choline"
 
 source_data_2b <- rbind(source_data_2b, "", "")
-write.csv(source_data_2b,"source_data_2b1.csv", row.names = F)
+write.csv(source_data_2b,"source_data/source_data_2b1.csv", row.names = F)
 
 
 source_data_2b <- cbind(map.serum$sample.id,
@@ -336,11 +336,49 @@ source_data_2b[1,8] <- "natural log serum metablite concentration"
 
 colnames(source_data_2b)[8:10] <- c("Xanthine", "Urea", "Methanol")
 
-write.csv(source_data_2b,"source_data_2b2.csv", row.names = F)
+write.csv(source_data_2b,"source_data/source_data_2b2.csv", row.names = F)
 
-system("cat source_data_2b1.csv source_data_2b2.csv > source_data_2b.csv")
+system("cat source_data/source_data_2b1.csv source_data/source_data_2b2.csv > source_data/source_data_2b.csv")
+system("rm source_data/source_data_2b1.csv")
+system("rm source_data/source_data_2b2.csv")
 
 
+#######
+
+stool.res <- cbind(apply(stool.t.fdr, 2, mean),
+                   apply(stool.t.perm.effect_size, 2, mean),
+                   apply(stool.t.perm.df, 2, mean),
+                   paste(apply(stool.t.perm.conf_int_lo, 2, mean),
+                         "to",
+                         apply(stool.t.perm.conf_int_hi, 2, mean)))
+
+colnames(stool.res) <- c("Stool mean p value after FDR",
+                         "mean effect size",
+                         "df",
+                         "mean 95% CI")
+
+write.table(stool.res, "Statistical_summaries/Fig_2b_stool_tests.txt", quote = F)
+
+
+
+serum.res <- cbind(apply(serum.t.fdr, 2, mean),
+                   apply(serum.t.perm.effect_size, 2, mean),
+                   apply(serum.t.perm.df, 2, mean),
+                   paste(apply(serum.t.perm.conf_int_lo, 2, mean),
+                         "to",
+                         apply(serum.t.perm.conf_int_hi, 2, mean)))
+
+colnames(serum.res) <- c("Serum mean p value after FDR",
+                         "mean effect size",
+                         "df",
+                         "mean 95% CI")
+
+write.table(serum.res, "Statistical_summaries/Fig_2b_serum_tests.txt", quote = F)
+
+
+system("cat Statistical_summaries/Fig_2b_stool_tests.txt Statistical_summaries/Fig_2b_serum_tests.txt > Statistical_summaries/Fig_2b_tests.txt")
+system("rm Statistical_summaries/Fig_2b_stool_tests.txt")
+system("rm Statistical_summaries/Fig_2b_serum_tests.txt")
 
 
 

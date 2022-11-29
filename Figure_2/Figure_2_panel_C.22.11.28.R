@@ -55,9 +55,9 @@ source_data_2c <- cbind("", "", source_data_2c)
 
 source_data_2c[1,2] <- "Figure 2c"
 
-write.csv(source_data_2c,"source_data_2c.csv", row.names = F)
+write.csv(source_data_2c,"source_data/source_data_2c.csv", row.names = F)
 t.res
 
 t.res <- capture.output(t.res)
-writeLines(t.res, "Fig_2c_tests.txt")
+writeLines(t.res, "Statistical_summaries/Fig_2c_tests.txt")
 

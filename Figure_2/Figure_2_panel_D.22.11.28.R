@@ -46,10 +46,10 @@ source_data_2d <- cbind("", "", source_data_2d)
 
 source_data_2d[1,2] <- "Figure 2d"
 
-write.csv(source_data_2d,"source_data_2d.csv", row.names = F)
+write.csv(source_data_2d,"source_data/source_data_2d.csv", row.names = F)
 t.res
 
 t.res <- capture.output(t.res)
-writeLines(t.res, "Fig_2c_tests.txt")
+writeLines(t.res, "Statistical_summaries/Fig_2d_tests.txt")
 
 

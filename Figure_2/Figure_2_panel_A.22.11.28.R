@@ -95,7 +95,7 @@ source_data_2a <- cbind("", source_data_2a, "","", as.matrix(otu.counts))
 source_data_2a[1,1] <- "Figure 2a"
 source_data_2a[1,5] <- "OTU counts"
 
-write.csv(source_data_2a,"source_data_2a.csv", row.names = F)
+write.csv(source_data_2a,"source_data/source_data_2a.csv", row.names = F)
 
 
 
