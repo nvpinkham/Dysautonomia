@@ -1,0 +1,12 @@
+
+	Paired t-test
+
+data:  tmao$tmao.ln by tmao$Disease.state
+t = 3.3197, df = 23, p-value = 0.002985
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 0.2418588 1.0416990
+sample estimates:
+mean difference 
+      0.6417789 
+

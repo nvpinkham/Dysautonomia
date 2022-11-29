@@ -1,0 +1,6 @@
+      mean over 999 permutations P_val          mean over 999 permutations df 
+                          0.0003224049                          29.0000000000 
+mean over 999 permutations effect_size      mean over 999 permutations t.stat 
+                         -6.2330583352                          -4.3876526179 
+mean over 999 permutations conf_int_lo mean over 999 permutations conf_int_hi 
+                         -9.1549610915                          -3.3111555789 
