@@ -1,0 +1,42 @@
+$`Cohoused mutants and controls`
+
+	Welch Two Sample t-test
+
+data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
+t = -0.78301, df = 13.416, p-value = 0.4472
+alternative hypothesis: true difference in means between group Control_Cohoused and group Mutant_Cohoused is not equal to 0
+95 percent confidence interval:
+ -1.0280190  0.4797967
+sample estimates:
+mean in group Control_Cohoused  mean in group Mutant_Cohoused 
+                      3.167000                       3.441111 
+
+
+$Mutants
+
+	Welch Two Sample t-test
+
+data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
+t = -2.9745, df = 18.025, p-value = 0.008115
+alternative hypothesis: true difference in means between group Mutant_Cohoused and group Mutant_Separate is not equal to 0
+95 percent confidence interval:
+ -1.9750767 -0.3400345
+sample estimates:
+mean in group Mutant_Cohoused mean in group Mutant_Separate 
+                     3.441111                      4.598667 
+
+
+$`Control_Cohoused and Mutant_Separate`
+
+	Welch Two Sample t-test
+
+data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
+t = -4.6345, df = 22.825, p-value = 0.0001178
+alternative hypothesis: true difference in means between group Control_Cohoused and group Mutant_Separate is not equal to 0
+95 percent confidence interval:
+ -2.0709836 -0.7923498
+sample estimates:
+mean in group Control_Cohoused  mean in group Mutant_Separate 
+                      3.167000                       4.598667 
+
+

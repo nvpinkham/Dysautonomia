@@ -1,0 +1,28 @@
+$`BC distances within Patinets and BC distances within Relatives`
+
+	Welch Two Sample t-test
+
+data:  pats and rels
+t = 21.981, df = 2152.8, p-value < 0.00000000000000022
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1083006 0.1295180
+sample estimates:
+mean of x mean of y 
+0.7154491 0.5965398 
+
+
+$`BC distances within Patinets and BC distances between Relatives and patients`
+
+	Welch Two Sample t-test
+
+data:  pats and between
+t = 3.7575, df = 2120.7, p-value = 0.0001763
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.009283677 0.029553348
+sample estimates:
+mean of x mean of y 
+0.7154491 0.6960306 
+
+

@@ -1,0 +1,7 @@
+"\"\"" "\"\"" "group.1" "group.2" "day" "p.val" "f.stat" "R2" "df"
+"figure 4b" "" "Control_Cohoused" "Mutant_Cohoused" 95 0.6895 0.70385 0.03763 1
+"" "" "Control_Cohoused" "Mutant_Cohoused" 195 0.3017 1.11338 0.03362 1
+"" "" "Control_Separate" "Mutant_Separate" 205 0.1503 1.37458 0.07481 1
+"" "" "Control_Cohoused" "Mutant_Cohoused" 295 0.0731 1.71348 0.05238 1
+"" "" "Control_Separate" "Mutant_Separate" 305 0.0425 2.02436 0.07491 1
+"" "" "Control_Separate" "Mutant_Separate" 105 0.0082 2.65017 0.04849 1
