@@ -115,5 +115,6 @@ source_data_3c <- cbind("", "", source_data_3c)
 source_data_3c[1,1] <- "Figure 3c"
 
 write.csv(source_data_3c,"source_data_3c.csv", row.names = F)
-t.res[[5]]
+t.res1 <- capture.output(t.res)
+writeLines(t.res1, "Fig_3c_tests.txt")
 

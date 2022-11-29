@@ -13,15 +13,13 @@ meta.6 <- norm(row.names(meta.6), meta.6)
 
 #########
 
-p6 <- meta.6$Label
+gtreatment_group <- meta.6$Label
 
 meta.6$Label <- NULL
 
-adonis2(dist(meta.6) ~ p6)
-
 map.6 <- as.data.frame(cbind(row.names(meta.6),
-                             p6,
-                             as.numeric(as.factor(p6))))
+                             gtreatment_group,
+                             as.numeric(as.factor(gtreatment_group))))
 colnames(map.6) <- c("id", "discription", "col")
 
 map.6$col[map.6$discription == "FD_6mo"] <-  "#D55E00"
@@ -43,4 +41,10 @@ source_data_3d[1,6] <- "Metabolite concentrations"
 source_data_3d <- cbind(source_data_3d, as.matrix(meta.6))
 
 write.csv(source_data_3d,"source_data_3d.csv", row.names = F)
+set.seed(42)
+res <- adonis2(dist(meta.6) ~ gtreatment_group, permutations = 9999)
+res
+
+res <- capture.output(res)
+writeLines(res, "Fig_3d_tests.txt")
 

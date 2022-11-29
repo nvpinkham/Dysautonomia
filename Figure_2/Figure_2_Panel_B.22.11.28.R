@@ -3,7 +3,7 @@ source("R/human_functions.22.11.27.R")
 
 par(mfrow=c(1,4))
 
-num.perm = 9
+num.perm = 999
 
 meta.stool <- read.csv("data/HumanStoolUnpaired_biomassnorm_metalabels.csv", row.names = 1)
 meta.serum <- read.csv("data/HumanSerumUnpaired_biomassnorm_metalabels.csv", row.names = 1)
