@@ -2,7 +2,7 @@
 
 source("R/human_functions.22.11.27.R")
 # run time : 10-20 minutes
-num.perm = 999
+num.perm = 9
 
 map <- read.csv("data/Map_human_microbiome.22.11.21.csv")
 row.names(map) <- map$sample.id

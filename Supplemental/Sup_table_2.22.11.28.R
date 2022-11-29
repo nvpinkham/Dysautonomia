@@ -24,7 +24,11 @@ colnames(age.dist2cent) <- c("p value", "Spearman rho", "n", "S")
 
 
 
-perm.spearman <- function(var1 = map.pat$age, var2= map.pat$dist.cent, donor = map.pat$DonorID, num.perm = 99){
+cor.perm <- function(var1 = map$eGFR,
+                     var2 = map$richness,
+                     donor = map$DonorID,
+                     num.perm = 99,
+                     norm = F){
 
   res <- as.data.frame(matrix(nrow =  num.perm, ncol = 4))
   colnames(res) <- c("p value", "Spearman rho", "n", "S")
@@ -48,15 +52,15 @@ perm.spearman <- function(var1 = map.pat$age, var2= map.pat$dist.cent, donor = m
 
     pick3 <- !duplicated(donor)
 
-    res.i <- cor.test(var1[pick3], var2[pick3], method = "spearman")
-
+    if(norm ){
+      res.i <- cor.test(var1[pick3], var2[pick3])
+    }else{
+      res.i <- cor.test(var1[pick3], var2[pick3], method = "spearman")
+    }
     res$`p value`[i] <- res.i$p.value
     res$S[i] <- res.i$statistic
     res$`Spearman rho`[i] <- res.i$estimate
     res$n[i] <- length(var1[pick3])
-
-
-
   }
 
   print(res)
@@ -64,9 +68,9 @@ perm.spearman <- function(var1 = map.pat$age, var2= map.pat$dist.cent, donor = m
   return(sapply(res, mean))
 }
 
-perm.spearman(map.pat$dist.cent, map.pat$age, map.pat$DonorID, 999)
-perm.spearman(map.pat$shared.proportion, map.pat$age, map.pat$DonorID, 999)
-perm.spearman(map.pat$dist2pair, map.pat$age, map.pat$DonorID, 999)
+cor.perm(map.pat$dist.cent, map.pat$age, map.pat$DonorID, 999)
+cor.perm(map.pat$shared.proportion, map.pat$age, map.pat$DonorID, 999)
+cor.perm(map.pat$dist2pair, map.pat$age, map.pat$DonorID, 999, norm = T)
 
 
 #2 ORAL FOOD
@@ -97,8 +101,11 @@ fisher.test(map.pat$pam, map.pat$Oral.foods)
 fisher.test(map.pat$pam, map.pat$Antibiotic)
 ####
 
-map.pat$
+cor.perm(map.pat$eGFR, map.pat$richness, map.pat$DonorID, 99, norm = T)
+cor.perm(map$eGFR, map$richness, map$DonorID, 99, norm = T)
 
+table(!is.na(map$eGFR))
+table(!is.na(map$eGFR[map$Disease.state == "Patient"]))
 
 #####
 table(is.na( ! map$eGFR))
@@ -122,3 +129,9 @@ anova(shared.lme, shared.null)
 
 cor.test(map$richness, map$eGFR)
 cor.test(map$richness, map$eGFR)
+
+
+
+fish.res <- fisher.test(table(map$enterotype[map$Disease.state == "Patient"],
+                              map$G.tube[map$Disease.state == "Patient"]))
+
