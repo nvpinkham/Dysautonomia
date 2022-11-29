@@ -798,3 +798,35 @@ get.used <- function(map, pick = "Stool 16S"){
   return(res)
 }
 
+#' Adds T test result to title
+#'
+#'
+#'
+#' @param infile t test result
+#' @return t test result as character vector
+tres2title <- function(title, t.res){
+
+  if(grepl("Paired", t.res[9])){
+
+    vect <- paste("t-test\neffect size =",
+                     round(t.res$estimate, 5),
+                     "p val = ", round(t.res$p.value, 5),
+                     "\n95% CI =", round(t.res$conf.int[1], 5),
+                     ",", round(t.res$conf.int[2], 5),
+                     "\ndf = ", round(t.res$parameter, 5),
+                     ", t stat =", round(t.res$statistic, 5))
+  }else{
+    vect <- paste("t-test\neffect size =",
+                     diff(round(t.res$estimate, 5)),
+                     "p val = ", round(t.res$p.value, 5),
+                     "\n95% CI =", round(t.res$conf.int[1], 5),
+                     ",", round(t.res$conf.int[2], 5),
+                     "\ndf = ", round(t.res$parameter, 5),
+                     ", t stat =", round(t.res$statistic, 5))
+
+  }
+  title(paste(title, vect),
+        font = 4)
+
+}
+
