@@ -97,7 +97,7 @@ for(i in 1 : length(m1)){
   otu.res$P_val[i] <- res$p.value
   otu.res$df[i] <- res$parameter
   otu.res$t.stat[i] <- res$statistic
-  otu.res$effect_size[i] <- diff(res.i$estimate)
+  otu.res$effect_size[i] <- diff(res$estimate)
   otu.res$conf_int_lo[i] <- res$conf.int[1]
   otu.res$conf_int_hi[i] <- res$conf.int[2]
 }
@@ -105,17 +105,7 @@ for(i in 1 : length(m1)){
 
 table(map$enterotype, map$Disease.state)
 
-fish.res <- fisher.test(table(map$enterotype[map$Disease.state == "Patient"], map$G.tube[map$Disease.state == "Patient"]))
-
-
-
-
-
-
 ##################### compile source data file ###########################
-
-
-
 source_data_2a <- cbind(map$sample.id, map$pam)
 colnames(source_data_2a) <- c("sample.id", "enterotype/cluster")
 source_data_2a <- cbind("", source_data_2a, "","", as.matrix(otu.counts))

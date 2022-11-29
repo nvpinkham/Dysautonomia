@@ -20,18 +20,7 @@ t.res <- t.test(tmao$tmao.ln ~ tmao$Disease.state, paired= T)
 
 paired.violin.beta(map = tmao, var = tmao$tmao.ln, plot.each = F)
 mtext(side = 2,at =  0, line = 2, "Natural log uM", font = 4)
-
-
-title.t <- paste("TMAO t-test\neffect size =",
-                 round(t.res$estimate, 5),
-                 "p val = ", round(t.res$p.value, 5),
-                 "\n95% CI =", round(t.res$conf.int[1], 5),
-                 ",", round(t.res$conf.int[2], 5),
-                 "\ndf = ", round(t.res$parameter, 5),
-                 ", t stst =", round(t.res$statistic, 5))
-
-title(title.t,
-      font = 4)
+tres2title("TMAO", t.res)
 
 #dev.off()
 
