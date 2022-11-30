@@ -58,9 +58,6 @@ for(i in 1 : length(mice)){
 
 
 
-
-
-
 asd.summary <- matrix(nrow = 5, ncol = 16)
 colnames(asd.summary) <- c("PERMANOVA p val", "F stat", "DF", "R2",
                            "bc mu to WT", "bc mu",
@@ -68,7 +65,7 @@ colnames(asd.summary) <- c("PERMANOVA p val", "F stat", "DF", "R2",
                            "mu.centroid", "control.centroid", "bc.centroids",
                            "wilk.mu", "wilk.control",
                            "t test p val", "t stat", "t DF")
-rownames(asd.summary) <- unique(map$time)
+rownames(asd.summary) <- sort(unique(map$time))
 asd.summary <-  as.data.frame(asd.summary)
 
 time.line <- sort(unique(map$time))
@@ -89,8 +86,8 @@ for(i in 1 : 5){
   res <- adonis2(otu.pick ~ map.pick$genotype, permutations = 9999)
   asd.summary $`PERMANOVA p val`[i] <- res$`Pr(>F)`[1]
   asd.summary $`F stat`[i] <- res$F[1]
-  asd.summary $`PERMANOVA DF`[i] <- res$Df[1]
-  asd.summary $`PERMANOVA R2`[i] <- res$R2[1]
+  asd.summary $DF[i] <- res$Df[1]
+  asd.summary $R2[i] <- res$R2[1]
 
   # explore distance matrix
   pick.dist <- as.matrix(vegdist(otu.pick))
