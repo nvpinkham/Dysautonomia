@@ -1,0 +1,56 @@
+$Mutant_Cohoused
+
+	Pearson's product-moment correlation
+
+data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
+t = 2.4153, df = 7, p-value = 0.04641
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01825926 0.92441579
+sample estimates:
+      cor 
+0.6742053 
+
+
+$Control_Cohoused
+
+	Pearson's product-moment correlation
+
+data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
+t = 0.7156, df = 8, p-value = 0.4946
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.4545483  0.7578630
+sample estimates:
+      cor 
+0.2452745 
+
+
+$Control_Separate
+
+	Pearson's product-moment correlation
+
+data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
+t = 0.56895, df = 9, p-value = 0.5833
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.4655879  0.7071608
+sample estimates:
+      cor 
+0.1863273 
+
+
+$Mutant_Separate
+
+	Pearson's product-moment correlation
+
+data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
+t = 0.51658, df = 13, p-value = 0.6141
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.3994601  0.6097852
+sample estimates:
+      cor 
+0.1418239 
+
+
