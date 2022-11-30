@@ -1,56 +1,31 @@
-$Mutant_Cohoused
+$`LM summary`
 
-	Pearson's product-moment correlation
+Call:
+lm(formula = trans$Gut.Transit.Time.hours ~ trans$Genotype + 
+    trans$Treatment.type + trans$DPW)
 
-data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
-t = 2.4153, df = 7, p-value = 0.04641
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.01825926 0.92441579
-sample estimates:
-      cor 
-0.6742053 
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.35008 -0.63874 -0.03655  0.64726  1.63141 
 
+Coefficients:
+                             Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                  2.259041   0.674876   3.347  0.00176 **
+trans$GenotypeMutant         0.701984   0.245124   2.864  0.00657 **
+trans$Treatment.typeSeparate 0.891076   0.269802   3.303  0.00199 **
+trans$DPW                    0.002313   0.002139   1.082  0.28579   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-$Control_Cohoused
-
-	Pearson's product-moment correlation
-
-data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
-t = 0.7156, df = 8, p-value = 0.4946
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.4545483  0.7578630
-sample estimates:
-      cor 
-0.2452745 
+Residual standard error: 0.8104 on 41 degrees of freedom
+Multiple R-squared:  0.3515,	Adjusted R-squared:  0.3041 
+F-statistic: 7.409 on 3 and 41 DF,  p-value: 0.0004471
 
 
-$Control_Separate
-
-	Pearson's product-moment correlation
-
-data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
-t = 0.56895, df = 9, p-value = 0.5833
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.4655879  0.7071608
-sample estimates:
-      cor 
-0.1863273 
-
-
-$Mutant_Separate
-
-	Pearson's product-moment correlation
-
-data:  trans$Age.Days[pick] and trans$Gut.Transit.Time.hours[pick]
-t = 0.51658, df = 13, p-value = 0.6141
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.3994601  0.6097852
-sample estimates:
-      cor 
-0.1418239 
-
+$CI
+                                    2.5 %      97.5 %
+(Intercept)                   0.896100856 3.621982029
+trans$GenotypeMutant          0.206945714 1.197022106
+trans$Treatment.typeSeparate  0.346199831 1.435952775
+trans$DPW                    -0.002006315 0.006632712
 
