@@ -20,7 +20,7 @@ sup_data_9[1,1] <- "Supplemental figure 9"
 sup_data_9[1,2] <- "Combined human and mice analysis"
 sup_data_9[1,6] <- "OTU counts"
 
-write.csv(sup_data_9,"sup_data_9.csv", row.names = F)
+write.csv(sup_data_9,"source_data/sup_data_9.csv", row.names = F)
 ################################################################################
 
 
