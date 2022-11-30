@@ -1,6 +1,6 @@
 $`Cohoused mutants and controls`
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.894445445974032
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = -0.78301, df = 13.416, p-value = 0.4472
@@ -14,7 +14,7 @@ mean in group Control_Cohoused  mean in group Mutant_Cohoused
 
 $Mutants
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.0324595622580106
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = -2.9745, df = 18.025, p-value = 0.008115
@@ -28,7 +28,7 @@ mean in group Mutant_Cohoused mean in group Mutant_Separate
 
 $`Control_Cohoused and Mutant_Separate`
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.000706685809513632
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = -4.6345, df = 22.825, p-value = 0.0001178
@@ -42,7 +42,7 @@ mean in group Control_Cohoused  mean in group Mutant_Separate
 
 $Controls
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.535676360038223
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = 1.3972, df = 18.882, p-value = 0.1786
@@ -56,7 +56,7 @@ mean in group Control_Separate mean in group Control_Cohoused
 
 $`Control_Separate and Mutant_Cohouse`
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.894445445974032
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = 0.23479, df = 13.323, p-value = 0.8179
@@ -70,7 +70,7 @@ mean in group Control_Separate  mean in group Mutant_Cohoused
 
 $`Control_Separate and Mutant_Separate`
 
-	Welch Two Sample t-test
+	Welch Two Sample t-test p after FDR = 0.00913678954071189
 
 data:  trans$Gut.Transit.Time.hours[pick] by trans$discription[pick]
 t = -3.5146, df = 23.385, p-value = 0.001827
