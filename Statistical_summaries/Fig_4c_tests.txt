@@ -1,6 +1,6 @@
 $`Day 100`
 
-	Welch Two Sample t-test ; p after FDR = 0.894445445974032
+	Welch Two Sample t-test ; p after FDR = 0.0174835810371628
 
 data:  map.1$Phenotype.score by map.1$Treatment.type
 t = -2.7203, df = 13.018, p-value = 0.01748
@@ -14,7 +14,7 @@ mean in group Cohoused mean in group Separate
 
 $`Day 200`
 
-	Welch Two Sample t-test ; p after FDR = 0.0324595622580106
+	Welch Two Sample t-test ; p after FDR = 0.000822924477132115
 
 data:  map.2$Phenotype.score by map.2$Treatment.type
 t = -4.1497, df = 28.434, p-value = 0.0002743
@@ -28,7 +28,7 @@ mean in group Cohoused mean in group Separate
 
 $`Day 300`
 
-	Welch Two Sample t-test ; p after FDR = 0.000706685809513632
+	Welch Two Sample t-test ; p after FDR = 0.00194091783625911
 
 data:  map.3$Phenotype.score by map.3$Treatment.type
 t = -3.7242, df = 20.515, p-value = 0.001294
