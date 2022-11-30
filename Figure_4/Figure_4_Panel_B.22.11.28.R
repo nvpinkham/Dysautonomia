@@ -98,6 +98,7 @@ for(i in 1 : length(treats)){
 
 
 res <- as.data.frame(res)
+res$DPW <- as.numeric(res$day) - 21 # switch to DPW
 row.names(res) <- NULL
 res <- res[order(res$group.1) , ]
 
@@ -122,7 +123,7 @@ res$n.scale <-   scale(res$n, center = T, scale = T)
 res$n.scale <-   res$n.scale + diff(c(min(res$n.scale), 1))
 
 res$dis <- as.factor(paste0(  res$group.1, "_",   res$group.2))
-res$day <- res$day + (as.numeric(res$dis) * 10) - 15
+res$DPW.bin  <- res$DPW+ (as.numeric(res$dis) * 10) - 15
 
 
 #setEPS()       # Set postscript arguments
@@ -134,18 +135,18 @@ par(mfrow=c(2, 2))
 par(mar = c(5.1, 4.1, 4.1, 2.1))
 
 
-plot(res$p.val ~ res$day,
+plot(res$p.val ~ res$DPW.bin ,
      pch = 21,
      cex = res$n.scale,
      bg = res$col,
      main = "Metabolite PERMANOVA",
      xlab = "DPW",
      ylab = "P value",
-     xlim= c(80, 360),
+     xlim= c(60, 360),
      ylim = c(-.1, .7),
      xaxt = "n")
 
-axis(1, at = c(111, 201, 291),
+axis(1, at = c(79, 179, 279),
      labels = c("79", "179", "279"))
 
 comps <- paste(res$group.1, res$group.2)
@@ -155,8 +156,8 @@ abline(h = 0.05, col = 2, lty = 2)
 for(i in 1 : 2){
 
   res.i <- res[comps == unique(comps)[i] , ]
-  points(  res.i $p.val ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
-  points(  res.i $p.val ~ res.i$day, col = res.i$col[1], type = "l")
+  points(  res.i $p.val ~ res.i$DPW.dummy, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
+  points(  res.i $p.val ~ res.i$DPW.dummy, col = res.i$col[1], type = "l")
 }
 
 legend(pch = 21, pt.bg  = 8,
@@ -184,19 +185,19 @@ legend("left", bty="n",
 
 par(mar = c(5.1, 4.1, 4.1, 2.1))
 
-plot(res$f.stat ~ res$day,
+plot(res$f.stat ~ res$DPW.bin ,
      pch = 21,
      cex = res$n.scale,
      bg = res$col,
      main = "Metabolite PERMANOVA",
      xlab = "DPW",
      ylab = "F stat",
-     xlim = c(80, 360),
+     xlim = c(60, 360),
      ylim = c(.55, 2.95),
      xaxt = "n")
 
 
-axis(1, at = c(100, 200, 300),
+axis(1, at = c(79, 179, 279),
      labels = c("79", "179", "279"))
 
 #axis(1, at = c(111, 201, 291),
@@ -205,8 +206,8 @@ axis(1, at = c(100, 200, 300),
 for(i in 1 : 2){
 
   res.i <- res[comps == unique(comps)[i] , ]
-  points(  res.i $f.stat ~ res.i$day, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
-  points(  res.i $f.stat ~ res.i$day, col = res.i$col[1], type = "l")
+  points(  res.i $f.stat ~ res.i$DPW.bin, bg = res.i$col[1], pch = 21,  cex = res.i$n.scale)
+  points(  res.i $f.stat ~ res.i$DPW.bin, col = res.i$col[1], type = "l")
 }
 
 legend(pch = 21, pt.bg  = 8,
@@ -236,12 +237,11 @@ table(map.meta$Genotype, map.meta$Age.Bin)
 res$X <- NULL
 res$n.scale <- NULL
 res$col <- NULL
-res$DPW.bin <- NULL
-res$n <- NULL
+res$DPW.bin  <- NULL
 res$dis <- NULL
+res$day <- NULL
 
-res
-
+res <- res[,c(1,2,8,3:7)]
 
 source_data_4b <- cbind( "", "", res)
 source_data_4b[1,1] <- "figure 4b"

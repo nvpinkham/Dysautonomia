@@ -148,6 +148,19 @@ names(t.res) <- c("Cohoused mutants and controls",
                   "Control_Separate and Mutant_Cohouse",
                   "Control_Separate and Mutant_Separate")
 
+ps <- c(t.res[[1]]$p.value,
+        t.res[[2]]$p.value,
+        t.res[[3]]$p.value,
+        t.res[[4]]$p.value,
+        t.res[[5]]$p.value,
+        t.res[[6]]$p.value)
+
+ps.fdr <- p.adjust(ps)
+
+for(i in 1 : 6){
+  t.res[[i]]$method <- paste(t.res[[i]]$method, "; p after FDR = ", ps.fdr[i])
+}
+
 writeLines(capture.output(t.res), "Statistical_summaries/Fig_4d_tests.txt")
 
 

@@ -124,7 +124,8 @@ for(i in 1 : length(treats)){
 
 res <- as.data.frame(res)
 row.names(res) <- NULL
-res <- res[order(res$DPW) , ]
+res <- res[order(res$AGE) , ]
+res$DPW <- as.numeric(res$AGE) - 21
 write.csv(res, "Microbiome_between_groups.csv")
 
 #setEPS()       # Set postscript arguments
@@ -163,7 +164,7 @@ par(mar = c(5.1, 4.1, 4.1, 2.1))
 
 #plot(res$p.val ~ res$DPW.bin,
 plot(res$p.val ~ res$DPW.bin,
-     xlim = c(80, 380),
+     xlim = c(60, 360),
      ylim = c(-.01, .1),
      pch = 21,
      cex = res$n.scale,
@@ -173,7 +174,7 @@ plot(res$p.val ~ res$DPW.bin,
      ylab = "P value",
      xaxt = "n")
 
-axis(1, at = c(100, 200, 300),
+axis(1, at = c(79, 179, 270),
      labels = c("79", "179", "279"))
 
 comps <- paste(res$group.1, res$group.2)
@@ -212,7 +213,7 @@ legend("left", bty="n",
 par(mar = c(5.1, 4.1, 4.1, 2.1))
 
 plot(res$f.stat ~ res$DPW.bin,
-     xlim = c(80, 380),
+     xlim = c(60, 360),
      ylim = c(1.5, 5.5),
      pch = 21,
      cex = res$n.scale,
@@ -223,7 +224,7 @@ plot(res$f.stat ~ res$DPW.bin,
      xaxt = "n")
 
 
-axis(1, at = c(100, 200, 300),
+axis(1, at = c(79, 179, 279),
      labels = c("79", "179", "279"))
 
 #axis(1, at = c(111, 201, 291),
@@ -257,9 +258,13 @@ res$X <- NULL
 res$n.scale <- NULL
 res$col <- NULL
 res$DPW.bin <- NULL
-res$n <- NULL
+#res$n <- NULL
 res$dis <- NULL
+res$AGE <- NULL
+res$n.group.1 <- NULL
+res$n.group.2 <- NULL
 
+res <- res[,c(1,2,8,3:7)]
 
 source_data_4a <- cbind( "", "", res)
 source_data_4a[1,1] <- "figure 4a"
