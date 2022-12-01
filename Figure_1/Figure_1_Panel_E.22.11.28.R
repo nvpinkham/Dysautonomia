@@ -7,8 +7,6 @@ map.stool <- read.csv("data/Map_human_metabolome_stool.22.11.21.csv", row.names 
 stool.norm <- norm.human(metabolites = meta.stool, samples.pick = row.names(meta.stool))
 
 stool.norm$Label <- NULL
-s.d <- dist(stool.norm)
-
 
 stool.plsda <- mixOmics::splsda(stool.norm, map.stool$Disease.state, ncomp = 3)
 
@@ -93,7 +91,7 @@ source_data.1e <- cbind("", source_data.1e, "", "", stool.plsda$variates$X)
 source_data.1e[1,1] <- "Figure 1e"
 source_data.1e[1,7] <- "PLSDA coordinates"
 
-write.csv(source_data.1e,"source_data_1e.csv", row.names = F)
+write.csv(source_data.1e,"source_data/source_data_1e.csv", row.names = F)
 res <- capture.output(res)
-writeLines(res, "Fig_1e_tests.txt")
+writeLines(res, "Statistical_summaries/Fig_1e_tests.txt")
 
