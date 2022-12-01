@@ -1,10 +1,11 @@
+
 source("R/human_functions.22.11.27.R")
 
 # makes sup figure 5
 # Runs permutational T test
 # this should take around 20 minutes
 
-num.perm = 9
+num.perm = 999
 
 meta.stool <- read.csv("data/HumanStoolUnpaired_biomassnorm_metalabels.csv", row.names = 1)
 meta.serum <- read.csv("data/HumanSerumUnpaired_biomassnorm_metalabels.csv", row.names = 1)
@@ -138,29 +139,6 @@ for(i in 1 : nrow(stool.t.perm)){
 }
 
 
-#postscript("stool_p_t.test.eps", width = 16.0, height = 6.0)
-par(mar=c(12.1,4.1,4.1,2.1))
-
-boxplot(stool.t.fdr, las = 2, ylab = "p after FDR correction",
-        main = paste("stool METABOLITES", num.perm, "PERMUTATIONS"))
-abline(h = 0.05, col = 2)
-#dev.off()
-
-aa <- colnames(stool.t.e.perm)
-bb <- substr(aa, 1, 1)
-cc <- substr(aa, 2, 2)
-bb[bb == "X" & grepl("[0-9]", cc)] <- ""
-dd <- paste0(bb, substr(aa, 2, 90))
-ee <- gsub("[.]", "-", dd)
-
-ee <- gsub("--", "-", ee)
-ee <- gsub("-acid", " acid", ee)
-
-colnames(stool.t.e.perm) <- ee
-
-plot.effect(stool.t.e.perm, name = "stool_human_individual_metabolites",
-            print = F)
-
 
 `mean p value` <- apply(stool.t.perm, 2, mean)
 `mean p after FDR` <- apply(stool.t.fdr, 2, mean)
@@ -177,8 +155,6 @@ stool.res <- cbind(`mean p value`,
                    `mean CI 95% high` ,
                    `mean df`,
                    `mean t stat`)
-
-write.table(stool.res, "Statistical_summaries/Sup_5a_tests.test")
 
 ########## compile source data file ###########################
 permutation <- 1 : num.perm
@@ -318,29 +294,6 @@ for(i in 1 : nrow(serum.t.perm)){
 
 serum.t.fdr <- serum.t.fdr[, order(colMedians(serum.t.fdr))  ]
 
-
-
-par(mar=c(12.1,4.1,4.1,2.1))
-
-boxplot(serum.t.fdr, las = 2, ylab = "p after BH correction",
-        main = paste("SERUM METABOLITES", num.perm, "PERMUTATIONS"))
-abline(h = 0.05, col = 2)
-
-aa <- colnames(serum.t.e.perm)
-bb <- substr(aa, 1, 1)
-cc <- substr(aa, 2, 2)
-bb[bb == "X" & grepl("[0-9]", cc)] <- ""
-dd <- paste0(bb, substr(aa, 2, 90))
-ee <- gsub("[.]", "-", dd)
-ee <- gsub("--", "-", ee)
-ee <- gsub("-acid", " acid", ee)
-
-colnames(serum.t.e.perm) <- ee
-
-plot.effect(mat = serum.t.e.perm, name = "Serum_human_individual_metabolites",
-            print = F)
-
-
 `mean p value` <- apply(serum.t.perm, 2, mean)
 `mean p after FDR` <- apply(serum.t.fdr, 2, mean)
 `mean effect size` <- apply(serum.t.e.perm, 2, mean)
@@ -357,22 +310,11 @@ serum.res <- cbind(`mean p value`,
                    `mean df`,
                    `mean t stat`)
 
-write.table(serum.res,
-            "Statistical_summaries/Sup_Fig_5b_tests.txt",
-            quote = F)
+choline <- stool.res[stool.res[,2] < 0.05 , ] # really good trick
+sup_table_3 <- rbind(choline,
+                     serum.res[serum.res[,2] < 0.05 , ])
+
+write.table(stool.res, "Supplemental_table_3.txt")
 
 
-########## compile source data file ###########################
-permutation <- 1 : num.perm
-source_data_5b <- cbind(permutation, serum.t.e.perm)
-
-source_data_5b <- cbind("", "", source_data_5b)
-source_data_5b[1,1] <- "figure 5a"
-source_data_5b[1,2] <- "mean difference between paired samples"
-
-write.csv(source_data_5b,"source_data_5b.csv", row.names = F)
-#####################################################################
-system("cat source_data_5a.csv source_data_5b.csv > source_data/source_data_5.csv")
-system("rm source_data_5a.csv")
-system("rm source_data_5b.csv")
 
