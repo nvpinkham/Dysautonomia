@@ -49,12 +49,12 @@ colnames(source_data.1b) <- c("BC distance within patients",
 source_data.1b <- cbind("", source_data.1b)
 source_data.1b[1,1] <- "Figure 1b"
 
-write.csv(source_data.1b,"source_data_1b.csv")
+write.csv(source_data.1b,"source_data/source_data_1b.csv")
 res <- list(pats.rels, pats.between)
 
 names(res) <- c("BC distances within Patinets and BC distances within Relatives",
                 "BC distances within Patinets and BC distances between Relatives and patients")
 
 res <- capture.output(res)
-writeLines(res, "Fig_1b_tests.txt")
+writeLines(res, "Statistical_summaries/Fig_1b_tests.txt")
 
