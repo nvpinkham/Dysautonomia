@@ -18,19 +18,20 @@ This analysis was done with macOS version 12.4
 R version 4.1.0
 
 ### Dependancies
-  randomForest 
-  rfUtilities
-  vegan 
-  vegan3d
-  labdsv
-  cluster
-  viopot
-  RColorBrewer
-  dendextend
-  lme4
-  mixOmics
-  dplyr
-  MetaboAnalyst
+vegan,
+labdsv,
+cluster,
+vioplot,
+gplots,
+RColorBrewer,
+dendextend,
+dplyr,
+mixOmics,
+scatterplot3d,
+lme4,
+randomForest,
+rfUtilities, 
+MetaboAnalyst
   
 MetaboAnalyst is not easily compiled on current macOS so individual R scripts from this package were used for certain processes. These are available at https://github.com/xia-lab/MetaboAnalystR 
 
