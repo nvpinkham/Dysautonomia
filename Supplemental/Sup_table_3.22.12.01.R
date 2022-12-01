@@ -107,7 +107,7 @@ for(j in  1 : num.perm){
     stool.t.e.perm[j,i] <- res$estimate
     stool.t.t.perm[j,i] <- res$statistic
     stool.t.lo.perm[j,i] <- res$conf.int[1]
-    stool.t.hi.perm[j,i] <- res$conf.int[1]
+    stool.t.hi.perm[j,i] <- res$conf.int[2]
 
     here <-  (((j - 1) * d) + 1) : (j * d)
 
@@ -261,7 +261,7 @@ for(j in  1 : num.perm){
     serum.t.e.perm[j,i] <- res$estimate
     serum.t.t.perm[j,i] <- res$statistic
     serum.t.lo.perm[j,i] <- res$conf.int[1]
-    serum.t.hi.perm[j,i] <- res$conf.int[1]
+    serum.t.hi.perm[j,i] <- res$conf.int[2]
 
     here <-  (((j - 1) * d) + 1) : (j * d)
 
