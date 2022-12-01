@@ -314,7 +314,7 @@ choline <- stool.res[stool.res[,2] < 0.05 , ] # really good trick
 sup_table_3 <- rbind(choline,
                      serum.res[serum.res[,2] < 0.05 , ])
 
-write.table(stool.res, "Supplemental_table_3.txt")
+write.csv(sup_table_3, "Supplemental_table_3.csv")
 
 
 
