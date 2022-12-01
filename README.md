@@ -1,5 +1,6 @@
 # Dysautonomia
 The content of this GitHub entry was used in the manuscript, "Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia"
+Pinkham, N. V. & Walk, S. T. Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia v. 1.0 https://github.com/nvpinkham/Dysautonomia, http://dx.doi.org/10.5281/zenodo.7384390 (2022).
 
 1) The "R" folder contains the custom scripts for analyzing human and mouse experiments
 
@@ -11,7 +12,7 @@ The content of this GitHub entry was used in the manuscript, "Gut microbiome dys
  - these scripts are supposed to be run in their parent directory (same directory as this document)
  
 Raw sequencing data is available under bioproject PRJNA785599 https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA785599 
-Raw metabolomic data is available MetaboLights accession TBD for now the raw NMR data is available on OneDrive:  it is password protected 
+All metabolomics data generated in this study have been deposited in the MetaboLights repository under accession number MTBLS5138 
 
 ### System requirements
 This analysis was done with macOS version 12.4
