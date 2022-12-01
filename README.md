@@ -1,6 +1,9 @@
+# Citation 
+ Pinkham, N. V. & Walk, S. T. Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia v. 1.0 https://github.com/nvpinkham/Dysautonomia, http://dx.doi.org/10.5281/zenodo.7384390 (2022).
+
 # Dysautonomia
-The content of this GitHub entry was used in the manuscript, "Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia"
-Pinkham, N. V. & Walk, S. T. Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia v. 1.0 https://github.com/nvpinkham/Dysautonomia, http://dx.doi.org/10.5281/zenodo.7384390 (2022).
+The content of this GitHub entry was used in the manuscript, 
+"Gut microbiome dysbiosis drives metabolic dysfunction in Familial dysautonomia"\
 
 1) The "R" folder contains the custom scripts for analyzing human and mouse experiments
 
