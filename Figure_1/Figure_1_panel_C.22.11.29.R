@@ -202,7 +202,7 @@ source_data.1c[1,1] <- "Figure 1c"
 write.csv(source_data.1c, "source_data/source_data_1c.csv")
 rich.t.means <- apply(rich.t, 2, mean)
 
-names(rich.t.means) <- paste("mean over 999 permutations", names(rich.t.means))
+names(rich.t.means) <- paste("mean over", num.perm, "permutations", names(rich.t.means))
 
 rich.t.means <- capture.output(rich.t.means)
 
