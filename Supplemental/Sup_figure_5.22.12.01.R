@@ -338,7 +338,7 @@ ee <- gsub("-acid", " acid", ee)
 colnames(serum.t.e.perm) <- ee
 
 plot.effect(mat = serum.t.e.perm, name = "Serum_human_individual_metabolites",
-            print = F)
+            print = F, type = "SERUM")
 
 
 `mean p value` <- apply(serum.t.perm, 2, mean)
