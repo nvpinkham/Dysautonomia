@@ -1,6 +1,7 @@
-
-
 source("R/human_functions.22.11.27.R")
+# make shared taxonomy plot; sup fig 3
+n.perm = 999
+
 
 # import data
 map <- read.csv("data/Map_human_microbiome.22.11.21.csv")
@@ -56,8 +57,6 @@ res.array <- array(dim = c(length(fams), 120, 999))
 rownames(res.array) <- rownames(res.tax)
 colnames(res.array) <- colnames(res.tax)
 res.array.discrete <- res.array
-
-n.perm = 999
 
 for(i in 1:n.perm){
   print(i)
