@@ -1,6 +1,0 @@
-      mean over 9 permutations P_val          mean over 9 permutations df 
-                       0.00001597504                       29.00000000000 
-mean over 9 permutations effect_size      mean over 9 permutations t.stat 
-                      24.78122222222                        5.21605935252 
-mean over 9 permutations conf_int_lo mean over 9 permutations conf_int_hi 
-                      15.05584321556                       34.50660122889 
