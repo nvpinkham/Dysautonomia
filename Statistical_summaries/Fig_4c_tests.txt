@@ -1,0 +1,72 @@
+$`DPW 79`
+$`DPW 79`[[1]]
+
+	Welch Two Sample t-test
+
+data:  map.1$Phenotype.score by map.1$Treatment.type
+t = -2.7203, df = 13.018, p-value = 0.01748
+alternative hypothesis: true difference in means between group Cohoused and group Separate is not equal to 0
+95 percent confidence interval:
+ -3.3015355 -0.3790201
+sample estimates:
+mean in group Cohoused mean in group Separate 
+              2.222222               4.062500 
+
+
+$`DPW 79`$sex
+
+Female   Male 
+    73     34 
+
+$`DPW 79`$FDR_p_value
+[1] 0.01748358
+
+
+$`DPW 179`
+$`DPW 179`[[1]]
+
+	Welch Two Sample t-test
+
+data:  map.2$Phenotype.score by map.2$Treatment.type
+t = -4.1497, df = 28.434, p-value = 0.0002743
+alternative hypothesis: true difference in means between group Cohoused and group Separate is not equal to 0
+95 percent confidence interval:
+ -3.163547 -1.073459
+sample estimates:
+mean in group Cohoused mean in group Separate 
+              3.692308               5.810811 
+
+
+$`DPW 179`$sex
+
+Female   Male 
+    60     40 
+
+$`DPW 179`$FDR_p_value
+[1] 0.0008229245
+
+
+$`DPW 279`
+$`DPW 279`[[1]]
+
+	Welch Two Sample t-test
+
+data:  map.3$Phenotype.score by map.3$Treatment.type
+t = -3.7242, df = 20.515, p-value = 0.001294
+alternative hypothesis: true difference in means between group Cohoused and group Separate is not equal to 0
+95 percent confidence interval:
+ -3.4568213 -0.9772446
+sample estimates:
+mean in group Cohoused mean in group Separate 
+              5.461538               7.678571 
+
+
+$`DPW 279`$sex
+
+Female   Male 
+    35     39 
+
+$`DPW 279`$FDR_p_value
+[1] 0.001940918
+
+

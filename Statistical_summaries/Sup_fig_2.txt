@@ -1,0 +1,12 @@
+
+	Fisher's Exact Test for Count Data
+
+data:  table(map$pam, map$Disease.state)
+p-value = 0.0001403
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  2.444079 54.000158
+sample estimates:
+odds ratio 
+  9.387769 
+
