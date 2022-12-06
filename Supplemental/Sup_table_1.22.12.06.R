@@ -43,7 +43,7 @@ sup1a$`Included in Microbiome Ordination (Fig 1a)` <- all$sample.id %in% map$sam
 source("Figure_1/Figure_1_Panel_E.22.11.28.R")
 sup1a$`Included in Metabolome Stool Ordination (Fig 1e)` <- all$sample.id %in% map.stool$sample.id
 
-source("Figure_1/Figure_1_Panel_F.22.11.28.R")
+source("Figure_1/Figure_1_panel_F.22.12.01.R")
 sup1a$`Included in Metabolome Serum Ordination (Fig 1f)` <- all$sample.id %in% map.serum$sample.id
 
 str(sup1a)
