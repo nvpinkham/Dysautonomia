@@ -1,7 +1,7 @@
-"" "" group.1 group.2 DPW p.val f.stat R2 df n
-figure 4b  Control_Cohoused Mutant_Cohoused 79 0.6895 0.70385 0.03763 1 20
-  Control_Cohoused Mutant_Cohoused 179 0.3017 1.11338 0.03362 1 34
-  Control_Separate Mutant_Separate 179 0.1503 1.37458 0.07481 1 19
-  Control_Cohoused Mutant_Cohoused 279 0.0731 1.71348 0.05238 1 33
-  Control_Separate Mutant_Separate 279 0.0425 2.02436 0.07491 1 27
-  Control_Separate Mutant_Separate 79 0.0082 2.65017 0.04849 1 54
+group.1 group.2 DPW p.val f.stat R2 df n n.group.1 n.group.2 n.group.1.Female n.group.1.Male n.group.2.Female n.group.2.Male
+Control_Cohoused Mutant_Cohoused 79 0.7 0.70385 0.03763 1 20 11 9 6 5 6 3
+Control_Cohoused Mutant_Cohoused 179 0.3048 1.11338 0.03362 1 34 21 13 7 14 6 7
+Control_Separate Mutant_Separate 179 0.1522 1.37458 0.07481 1 19 9 10 7 2 6 4
+Control_Cohoused Mutant_Cohoused 279 0.0746 1.71348 0.05238 1 33 20 13 7 13 6 7
+Control_Separate Mutant_Separate 279 0.0417 2.02436 0.07491 1 27 12 15 5 7 9 6
+Control_Separate Mutant_Separate 79 0.008 2.65017 0.04849 1 54 29 25 18 11 14 11
