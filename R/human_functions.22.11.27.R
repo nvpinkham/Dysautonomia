@@ -15,6 +15,7 @@ library(scatterplot3d)
 library(lme4)
 options(scipen=999)
 
+dir.create("Statistical_summaries", showWarnings = F)
 
 agu <- readLines("MetaboAnalystR-master/R/All_generic_utils.R")[1:68]
 writeLines(agu, "MetaboAnalystR-master/R/All_generic_utils_fixed.R")
