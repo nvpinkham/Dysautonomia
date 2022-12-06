@@ -27,7 +27,7 @@ sup1a$paired.relative[sup1a$Disease.state != "Patient"] <- ""
 sup1a$age <- all$age
 sup1a$BMI <- all$BMI
 sup1a$`Oral Foods (vs. exclusively eating with G tube)` <- all$Oral.foods#  ability to eat food orally (versus patients that exclusively ate using a gastrostomy (G-) tube
-sup1a$`G tube (patient has a G-tube)` <- all$G.tube
+sup1a$`G tube (patient has gastrostomy but may still consume foods orally)` <- all$G.tube
 sup1a$`Antibiotics (within previous 3 months)`<- all$Antibiotic
 
 sup1a$ALP <- all$ALP
