@@ -10,6 +10,8 @@ library(RColorBrewer)
 library(dendextend)
 library(dplyr)
 
+dir.create("Statistical_summaries", showWarnings = F)
+
 agu <- readLines("MetaboAnalystR-master/R/All_generic_utils.R")[1:68]
 writeLines(agu, "MetaboAnalystR-master/R/All_generic_utils_fixed.R")
 
